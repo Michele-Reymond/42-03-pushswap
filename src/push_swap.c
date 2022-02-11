@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:05:43 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/11 18:03:13 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/11 20:08:22 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ int *stock_args(int count, char **arguments)
 
 int	main(int argc, char **argv)
 {
-	int	*stack_a;
+	int	*stack_a = NULL;
 
+	(void)argv;
 	if (argc < 2)
 	{
 		printf("nop!");
