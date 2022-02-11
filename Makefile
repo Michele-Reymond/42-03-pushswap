@@ -6,13 +6,13 @@
 #    By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/11 19:48:18 by mreymond          #+#    #+#              #
-#    Updated: 2022/02/11 20:09:06 by mreymond         ###   ########.fr        #
+#    Updated: 2022/02/11 22:59:39 by mreymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		= src/push_swap.c
 
-OBJS		= ${SRCS:.c=.o}
+OBJS		= $(SRCS:.c=.o)
 
 LBFT_PATH 	= ./src/libft/
 
@@ -22,24 +22,24 @@ NAME		= push_swap
 RM			= rm -f
 
 
-all:		${NAME}
+all:		$(NAME)
 
-.c.o:
-			${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+$(NAME):	$(OBJS)
+			@$(MAKE) --silent -C $(LBFT_PATH)
+			$(CC) $(CFLAGS) $(OBJS) -L $(LBFT_PATH) -lft -o $(NAME)
 
-${NAME}:	${OBJS}
-			@${MAKE} --silent -C ${LBFT_PATH}
-			$(CC) $(CFLAGS) -o $(NAME) ${OBJS} -L $(LBFT_PATH) -lft
+%.o: %.c
+			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 run:		
-			./${NAME} 64 2 8 52 3
+			./$(NAME) 64 2 8 52 3
 
 clean:
-			${RM} ${OBJS}
+			$(RM) $(OBJS)
 			@$(MAKE) -C $(LBFT_PATH) clean
 
 fclean:		clean
-			${RM} ${NAME}
+			$(RM) $(NAME)
 			@$(MAKE) -C $(LBFT_PATH) fclean
 
 re:			fclean all
