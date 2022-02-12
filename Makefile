@@ -6,7 +6,7 @@
 #    By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/11 19:48:18 by mreymond          #+#    #+#              #
-#    Updated: 2022/02/11 22:59:39 by mreymond         ###   ########.fr        #
+#    Updated: 2022/02/12 11:11:27 by mreymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ $(NAME):	$(OBJS)
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 run:		
-			./$(NAME) 64 2 8 52 3
+			./$(NAME) 64 2 8 c 3
 
 clean:
 			$(RM) $(OBJS)
