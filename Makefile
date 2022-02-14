@@ -6,11 +6,16 @@
 #    By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/11 19:48:18 by mreymond          #+#    #+#              #
-#    Updated: 2022/02/12 11:11:27 by mreymond         ###   ########.fr        #
+#    Updated: 2022/02/14 18:16:03 by mreymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS		= src/push_swap.c
+SRCS		= src/push_swap.c \
+			src/ps_errors.c \
+			src/ps_push.c \
+			src/ps_rotate.c \
+			src/ps_swap.c \
+			src/ps_utils.c
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -32,7 +37,7 @@ $(NAME):	$(OBJS)
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 run:		
-			./$(NAME) 64 2 8 c 3
+			./$(NAME) 64 2 8 54 3
 
 clean:
 			$(RM) $(OBJS)

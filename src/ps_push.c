@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ps_push.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/11 17:05:43 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/14 18:57:39 by mreymond         ###   ########.fr       */
+/*   Created: 2022/02/14 18:01:17 by mreymond          #+#    #+#             */
+/*   Updated: 2022/02/14 19:06:20 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void push(int *src_stack, int *dst_stack)
 {
-	t_tabs stack;
+    
+}
 
-	stack.size = check_args(argc);
-	stack.a = stock_args(argc, argv);
-	stack.b = (int *)malloc(sizeof(int) * stack.size);
-	free_stack(&stack);
-	return (0);
+void what_to_push(int *stack_a, int *stack_b, char *move)
+{
+    if (ft_strnstr(move, PA, 2))
+    {
+        push(stack_b, stack_a);
+        printf("%s\n", PA);
+    }
+    else if (ft_strnstr(move, PB, 2))
+    {
+        push(stack_a, stack_b);
+        printf("%s\n", PB);
+    }
 }
