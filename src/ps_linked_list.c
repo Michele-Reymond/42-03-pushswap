@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:10:52 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/15 18:12:43 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/15 21:46:58 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,19 +64,13 @@ void delete_last(t_list *stack)
 
     i = 2;
     li_cursor = stack->first;
-    li_last = stack->first;
+    li_last = find_last(stack);
     while (i < stack->size)
     {
         li_cursor = li_cursor->next;
         i++;
     }
     li_cursor->next = NULL;
-    i = 1;
-    while (i < stack->size)
-    {
-        li_last = li_last->next;
-        i++;
-    }
     stack->size--;
     free(li_last);
 }
