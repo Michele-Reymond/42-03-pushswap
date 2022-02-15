@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:59:38 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/14 18:58:52 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/15 14:09:02 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,21 @@ long	ft_atol(const char *str)
 	return (temp);
 }
 
-int *stock_args(int count, char **arguments)
+int *stock_string(char **av)
+{
+	char **strings;
+	int	*stack;
+	int i;
+
+	i = 0;
+	strings = ft_split(av[1], ' ');
+	while (strings[i])
+		i++;
+	stack = stock_args(i, strings, 0);
+	return (stack);
+}
+
+int *stock_args(int count, char **arguments, int start)
 {
 	int		*stack;
 	int		i;
@@ -44,8 +58,8 @@ int *stock_args(int count, char **arguments)
 	long	entry;
 	
 	i = 0;
-	j = 1;
-	stack = (int *)malloc(sizeof(int) * (count - 1) + 1);
+	j = start;
+	stack = (int *)malloc(sizeof(int) * (count - 1));
 	if (stack == NULL)
 		return (0);
 	while (j < count)

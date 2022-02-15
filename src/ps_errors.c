@@ -6,25 +6,43 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:00:42 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/14 18:54:44 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/15 12:39:11 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int check_args(int argc)
+int check_if_string(char *string)
+{
+	int i;
+
+	i = 0;
+	while (string[i] != '\0')
+	{
+		if (!(ft_isdigit(string[i]) || string[i] == ' ' || string[i] == '-'))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int check_args(int argc, char *string)
 {
     if (argc < 2)
 	{
 		printf("Error\nIl n'y a pas assez d'arguments");
 		exit(0);
 	}
-     if (argc == 2)
+    if (argc == 2)
 	{
-		printf("Error\nIl faut plus d'un agrument pour trier");
-		exit(0);
+		if (!check_if_string(string))
+		{
+			printf("Error\nIl faut plus d'un agrument pour trier");
+			exit(0);
+		}
+		return (1);
 	}
-	return (argc - 1);
+	return (0);
 }
 
 int check_doubles(int *stack, long entry, int pos)
@@ -69,6 +87,8 @@ void check_nbr(char *nbr, int *stack)
 	int i;
 
 	i = 0;
+	if (nbr[i] == '-')
+		i++;
 	while (nbr[i] != '\0')
 	{
 		if (!(nbr[i] >= '0' && nbr[i] <= '9'))

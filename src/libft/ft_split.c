@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 15:07:52 by mreymond          #+#    #+#             */
-/*   Updated: 2021/10/31 12:12:33 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/15 14:06:04 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static int	countwords(char const *s, char c)
 	i = 0;
 	words = 0;
 	sep = 0;
+	if (s[i] && s[i] != c)
+		words++;
 	while (s[i] != '\0')
 	{
 		if (s[i] == c && s[i + 1] != c)
