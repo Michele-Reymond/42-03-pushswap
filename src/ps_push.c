@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:01:17 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/15 18:01:30 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/15 18:13:05 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,5 @@ void push(t_list *src_stack, t_list **dst_stack)
     if (*dst_stack == NULL)
         *dst_stack = list_init(nbr);
     else
-        insert_befor(*dst_stack, nbr);
+        insert_after(*dst_stack, nbr);
 }

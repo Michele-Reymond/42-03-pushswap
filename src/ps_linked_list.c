@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:10:52 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/15 18:02:39 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/15 18:12:43 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,21 @@ void insert_befor(t_list *liste, long nbr)
     new_nbr->number = nbr;
     new_nbr->next = liste->first;
     liste->first = new_nbr;
+    liste->size++;
+}
+
+void insert_after(t_list *liste, long nbr)
+{
+    t_nbr *new_nbr;
+    t_nbr *li_last;
+
+    li_last = find_last(liste);
+    new_nbr = malloc(sizeof(*new_nbr));
+    if (liste == NULL || new_nbr == NULL)
+        exit(0);
+    new_nbr->number = nbr;
+    new_nbr->next = NULL;
+    li_last->next = new_nbr;
     liste->size++;
 }
 

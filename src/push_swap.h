@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:08:35 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/15 18:00:24 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/15 18:14:57 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,6 @@
 # define RRB "rrb"
 # define RRR "rrr"
 
-typedef struct tabs
-{
-    int	*a;
-	int	*b;
-    int size_a;
-    int size_b;
-}   t_tabs;
-
 typedef struct Number t_nbr;
 struct Number
 {
@@ -53,6 +45,8 @@ typedef struct Liste
 t_list *stock_args(int count, char **arguments, int start);
 t_list *stock_string(char **av);
 void delete_last(t_list *stack);
+void insert_after(t_list *liste, long nbr);
+t_nbr *find_last(t_list *stack);
 void swap(t_list *stack);
 void push(t_list *src_stack, t_list **dst_stack);
 void what_to_swap(int *stack_a, int *stack_b, char *move);
