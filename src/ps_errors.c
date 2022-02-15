@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:00:42 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/15 12:39:11 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:09:03 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int check_if_string(char *string)
 			return (0);
 		i++;
 	}
+	if (!ft_strchr(string, ' '))
+	{
+		printf("Error\nIl n'y a pas assez de nombre à comparer");
+		exit(0);
+	}
 	return (1);
 }
 
@@ -37,7 +42,9 @@ int check_args(int argc, char *string)
 	{
 		if (!check_if_string(string))
 		{
-			printf("Error\nIl faut plus d'un agrument pour trier");
+			printf("Error\nL'entrée n'est pas conforme:\n");
+			printf("Les nombres doivent être séparés par des espaces\n");
+			printf("Il ne doit pas y avoir de lettres\n");
 			exit(0);
 		}
 		return (1);
@@ -45,17 +52,17 @@ int check_args(int argc, char *string)
 	return (0);
 }
 
-int check_doubles(int *stack, long entry, int pos)
+int check_doubles(t_list *stack, long entry)
 {
-	int i;
+	t_nbr *list_pos;
 
-	i = 0;
-	while (i < pos)
-	{
-		if (stack[i] == entry)
+	list_pos = stack->first;
+    while (list_pos != NULL)
+    {
+		if (list_pos->number == entry)
 			return (0);
-		i++;
-	}
+        list_pos = list_pos->next;
+    }
 	return (1);
 }
 
@@ -66,7 +73,7 @@ int check_max(long entry)
 	return (1);
 }
 
-void check_entry(int *stack, long entry, int pos)
+void check_entry(t_list *stack, long entry)
 {
 	if (check_max(entry) == 0)
 	{
@@ -74,7 +81,7 @@ void check_entry(int *stack, long entry, int pos)
 		free(stack);
 		exit(0);
 	}
-	if (check_doubles(stack, entry, pos) == 0)
+	if (check_doubles(stack, entry) == 0)
 	{
 		printf("Error\nIl y a des doublons!\n");
 		free(stack);
@@ -82,7 +89,7 @@ void check_entry(int *stack, long entry, int pos)
 	}
 }
 
-void check_nbr(char *nbr, int *stack)
+void check_nbr(char *nbr, t_list *stack)
 {
 	int i;
 

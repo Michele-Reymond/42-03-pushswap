@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:59:38 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/15 14:09:02 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/15 16:09:41 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ long	ft_atol(const char *str)
 	return (temp);
 }
 
-int *stock_string(char **av)
+t_list *stock_string(char **av)
 {
 	char **strings;
-	int	*stack;
+	t_list	*stack;
 	int i;
 
 	i = 0;
@@ -50,28 +50,26 @@ int *stock_string(char **av)
 	return (stack);
 }
 
-int *stock_args(int count, char **arguments, int start)
+t_list *stock_args(int count, char **arguments, int start)
 {
-	int		*stack;
-	int		i;
+	t_list		*stack = NULL;
 	int		j;
 	long	entry;
 	
-	i = 0;
 	j = start;
-	stack = (int *)malloc(sizeof(int) * (count - 1));
-	if (stack == NULL)
-		return (0);
+	check_nbr(arguments[j], stack);
+	entry = ft_atol(arguments[j]);
+	check_max(entry);
+	stack = list_init(entry);
+	j++;
 	while (j < count)
 	{
 		check_nbr(arguments[j], stack);
 		entry = ft_atol(arguments[j]);
-		check_entry(stack, entry, i);
-		stack[i] = entry;
-		i++;
+		check_entry(stack, entry);
+		insert_after(stack, entry);
 		j++;
 	}
-	stack[i] = '\0';
 	return (stack);
 }
 

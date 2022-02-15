@@ -6,12 +6,13 @@
 #    By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/11 19:48:18 by mreymond          #+#    #+#              #
-#    Updated: 2022/02/15 12:33:55 by mreymond         ###   ########.fr        #
+#    Updated: 2022/02/15 16:07:45 by mreymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS		= src/push_swap.c \
 			src/ps_errors.c \
+			src/ps_linked_list.c \
 			src/ps_push.c \
 			src/ps_rotate.c \
 			src/ps_swap.c \

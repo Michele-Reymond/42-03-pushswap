@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:08:35 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/15 14:09:18 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/15 15:47:30 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,30 +37,32 @@ typedef struct tabs
     int size_b;
 }   t_tabs;
 
-typedef struct Nombre t_nbr;
-struct Nombre
+typedef struct Number t_nbr;
+struct Number
 {
-    int     nombre;
-    t_nbr   *suivant;
+    int     number;
+    t_nbr   *next;
 };
 
 typedef struct Liste
 {
-    t_nbr   *premier;
+    t_nbr   *first;
     int     size;
 } t_list;
 
-int *stock_args(int count, char **arguments, int start);
-int *stock_string(char **av);
+t_list *stock_args(int count, char **arguments, int start);
+t_list *stock_string(char **av);
 void swap(int *stack);
 void what_to_swap(int *stack_a, int *stack_b, char *move);
 void what_to_push(t_tabs *stack, char *move);
 long	ft_atol(const char *str);
 int check_args(int argc, char *string);
-int check_doubles(int *stack, long entry, int pos);
+int check_doubles(t_list *stack, long entry);
+t_list *list_init(long nbr);
+void insert_after(t_list *liste, long nbr);
 int check_max(long entry);
-void check_entry(int *stack, long entry, int pos);
-void check_nbr(char *nbr, int *stack);
+void check_entry(t_list *stack, long entry);
+void check_nbr(char *nbr, t_list *stack);
 void free_stack( t_tabs *stack);
 
 #endif
