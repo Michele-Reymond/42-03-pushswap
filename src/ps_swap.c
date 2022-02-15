@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:01:05 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/15 17:00:14 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/15 21:38:10 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,10 @@ void swap(t_list *stack)
 
     i = 2;
     li_cursor = stack->first;
-    li_last = stack->first;
+    li_last = find_last(stack);
     while (i < stack->size)
     {
         li_cursor = li_cursor->next;
-        i++;
-    }
-    i = 1;
-    while (i < stack->size)
-    {
-        li_last = li_last->next;
         i++;
     }
     tmp = li_cursor->number;

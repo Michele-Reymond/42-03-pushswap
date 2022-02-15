@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:05:43 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/15 18:14:41 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/15 21:37:50 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,9 @@ int	main(int argc, char **argv)
 		stack_a = stock_string(argv);
 	else
 		stack_a = stock_args(argc, argv, 1);
-	// afficherListe(stack_a);
-	// afficherListe(stack_b);
-	// printf("----------\n");
-	// push(stack_a, &stack_b);
-	// afficherListe(stack_a);
-	// afficherListe(stack_b);
-	// printf("----------\n");
-	// push(stack_a, &stack_b);
-	// afficherListe(stack_a);
-	// afficherListe(stack_b);
-	// printf("----------\n");
-	// push(stack_b, &stack_a);
-	// afficherListe(stack_a);
-	// afficherListe(stack_b);
-	// printf("----------\n");
-	// push(stack_b, &stack_a);
-	// afficherListe(stack_a);
-	// afficherListe(stack_b);
-	// printf("%d\n", stack_b->size);
+	afficherListe(stack_a);
+	swap(stack_a);
+	afficherListe(stack_a);
 	free_list(stack_a);
 	free_list(stack_b);
 	return (0);

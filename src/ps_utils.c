@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:59:38 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/15 17:48:56 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/15 21:01:21 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,12 +72,4 @@ t_list *stock_args(int count, char **arguments, int start)
 		j++;
 	}
 	return (stack);
-}
-
-void free_stack( t_tabs *stack)
-{
-    free(stack->a);
-	stack->a = NULL;
-	free(stack->b);
-	stack->b = NULL;
 }
