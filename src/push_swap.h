@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:08:35 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/15 15:47:30 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/15 18:00:24 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,18 @@ typedef struct Liste
 
 t_list *stock_args(int count, char **arguments, int start);
 t_list *stock_string(char **av);
-void swap(int *stack);
+void delete_last(t_list *stack);
+void swap(t_list *stack);
+void push(t_list *src_stack, t_list **dst_stack);
 void what_to_swap(int *stack_a, int *stack_b, char *move);
 void what_to_push(t_tabs *stack, char *move);
 long	ft_atol(const char *str);
 int check_args(int argc, char *string);
 int check_doubles(t_list *stack, long entry);
 t_list *list_init(long nbr);
-void insert_after(t_list *liste, long nbr);
+void free_list(t_list *liste);
+void afficherListe(t_list *liste);
+void insert_befor(t_list *liste, long nbr);
 int check_max(long entry);
 void check_entry(t_list *stack, long entry);
 void check_nbr(char *nbr, t_list *stack);

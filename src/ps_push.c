@@ -6,36 +6,37 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:01:17 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/15 12:07:52 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/15 18:01:30 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void push(t_tabs *stack, char *move)
-// {
-// }
-
-void what_to_push(t_tabs *stack, char *move)
+t_nbr *find_last(t_list *stack)
 {
     int i;
-    int j;
+    t_nbr *li_last;
 
-    i = stack->size_a - 1;
-    j = stack->size_b - 1;
-    if (ft_strnstr(move, PA, 2))
+    i = 1;
+    li_last = stack->first;
+    while (i < stack->size)
     {
-        while(i >= 0)
-        {
-            if (!stack->a[i])
-                stack->a[i] = stack->b[j];
-            i--;
-        }
-        printf("%s\n", PA);
+        li_last = li_last->next;
+        i++;
     }
-    else if (ft_strnstr(move, PB, 2))
-    {
-        // push(&stack, move);
-        printf("%s\n", PB);
-    }
+    return (li_last);
+}
+
+void push(t_list *src_stack, t_list **dst_stack)
+{
+    int nbr;
+    t_nbr *li_last;
+
+    li_last = find_last(src_stack);
+    nbr = li_last->number;
+    delete_last(src_stack);
+    if (*dst_stack == NULL)
+        *dst_stack = list_init(nbr);
+    else
+        insert_befor(*dst_stack, nbr);
 }
