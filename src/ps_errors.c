@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ps_errors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:00:42 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/15 16:24:23 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/16 13:34:56 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int check_if_string(char *string)
+int	check_if_string(char *string)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (string[i] != '\0')
@@ -31,14 +31,14 @@ int check_if_string(char *string)
 	return (1);
 }
 
-int check_args(int argc, char *string)
+int	check_args(int argc, char *string)
 {
-    if (argc < 2)
+	if (argc < 2)
 	{
 		printf("Error\nIl n'y a pas assez d'arguments");
 		exit(0);
 	}
-    if (argc == 2)
+	if (argc == 2)
 	{
 		if (!check_if_string(string))
 		{
@@ -52,28 +52,28 @@ int check_args(int argc, char *string)
 	return (0);
 }
 
-int check_doubles(t_list *stack, long entry)
+int	check_doubles(t_list *stack, long entry)
 {
-	t_nbr *list_pos;
+	t_nbr	*list_pos;
 
 	list_pos = stack->first;
-    while (list_pos != NULL)
-    {
+	while (list_pos != NULL)
+	{
 		if (list_pos->number == entry)
 			return (0);
-        list_pos = list_pos->next;
-    }
+		list_pos = list_pos->next;
+	}
 	return (1);
 }
 
-int check_max(long entry)
+int	check_max(long entry)
 {
 	if (!(entry >= INT_MIN && entry <= INT_MAX))
 		return (0);
 	return (1);
 }
 
-void check_entry(t_list *stack, long entry)
+void	check_entry(t_list *stack, long entry)
 {
 	if (check_max(entry) == 0)
 	{
@@ -89,9 +89,9 @@ void check_entry(t_list *stack, long entry)
 	}
 }
 
-void check_nbr(char *nbr, t_list *stack)
+void	check_nbr(char *nbr, t_list *stack)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (nbr[i] == '-')

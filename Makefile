@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+         #
+#    By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/11 19:48:18 by mreymond          #+#    #+#              #
-#    Updated: 2022/02/15 16:07:45 by mreymond         ###   ########.fr        #
+#    Updated: 2022/02/16 14:45:20 by mreymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRCS		= src/push_swap.c \
 			src/ps_push.c \
 			src/ps_rotate.c \
 			src/ps_swap.c \
-			src/ps_utils.c
+			src/ps_utils.c \
+			src/ps_algo_bubble.c
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -38,7 +39,7 @@ $(NAME):	$(OBJS)
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 run:		
-			./$(NAME) "64 2 -8 54 3"
+			./$(NAME) 4 67 3 87 23
 
 clean:
 			$(RM) $(OBJS)

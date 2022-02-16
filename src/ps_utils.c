@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:59:38 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/15 21:01:21 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/16 15:19:23 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ long	ft_atol(const char *str)
 	return (temp);
 }
 
-t_list *stock_string(char **av)
+t_list	*stock_string(char **av)
 {
-	char **strings;
+	char	**strings;
 	t_list	*stack;
-	int i;
+	int		i;
 
 	i = 0;
 	strings = ft_split(av[1], ' ');
@@ -50,26 +50,52 @@ t_list *stock_string(char **av)
 	return (stack);
 }
 
-t_list *stock_args(int count, char **arguments, int start)
+t_list	*stock_args(int count, char **arguments, int start)
 {
-	t_list		*stack;
+	t_list	*stack;
 	int		j;
 	long	entry;
-	
+
 	j = start;
+	count--;
 	stack = NULL;
-	check_nbr(arguments[j], stack);
-	entry = ft_atol(arguments[j]);
+	check_nbr(arguments[count], stack);
+	entry = ft_atol(arguments[count]);
 	check_max(entry);
 	stack = list_init(entry);
-	j++;
-	while (j < count)
+	count--;
+	while (count >= j)
 	{
-		check_nbr(arguments[j], stack);
-		entry = ft_atol(arguments[j]);
+		check_nbr(arguments[count], stack);
+		entry = ft_atol(arguments[count]);
 		check_entry(stack, entry);
 		insert_befor(stack, entry);
-		j++;
+		count--;
 	}
 	return (stack);
 }
+
+// t_list	*stock_args(int count, char **arguments, int start)
+// {
+// 	t_list	*stack;
+// 	int		j;
+// 	int		end;
+// 	long	entry;
+
+// 	j = start;
+// 	stack = NULL;
+// 	check_nbr(arguments[j], stack);
+// 	entry = ft_atol(arguments[j]);
+// 	check_max(entry);
+// 	stack = list_init(entry);
+// 	j++;
+// 	while (j < count)
+// 	{
+// 		check_nbr(arguments[j], stack);
+// 		entry = ft_atol(arguments[j]);
+// 		check_entry(stack, entry);
+// 		insert_befor(stack, entry);
+// 		j++;
+// 	}
+// 	return (stack);
+// }
