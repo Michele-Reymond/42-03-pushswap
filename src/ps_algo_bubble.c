@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:41:22 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/17 11:06:37 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/17 13:08:44 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,58 @@ void	bubble_algo_pas_opti(t_list *stack_a, t_list *stack_b)
 	{
 		push(stack_b, &stack_a, PA);
 		i++;
+	}
+}
+
+void	bubble_algo_reverse_pas_opti(t_list **stack_a)
+{
+	int j;
+	int tmp;
+
+	tmp = (*stack_a)->size + 1;
+	 while (bubble_loop(*stack_a) == 0)
+	{
+		j = tmp;
+        while (j >= 0)
+        {
+            if (bubble_loop(*stack_a) == 0)
+            {
+                bubble_sort_big(*stack_a, SA);
+                rotate(*stack_a, RA);
+            }
+            j--;
+        }
+        j = tmp;
+        while (j >= 0)
+        {
+            if (bubble_loop(*stack_a) == 0)
+            {
+                rotate_reverse(*stack_a, RRA);
+                bubble_sort(*stack_a, SA);
+            }
+            j--;
+        }
+        j = tmp;
+        while (j >= 0)
+        {
+            if (bubble_loop(*stack_a) == 0)
+            {
+                bubble_sort(*stack_a, SA);
+                rotate(*stack_a, RA);
+            }
+            j--;
+        }
+        j = tmp;
+        while (j >= 0)
+        {
+            if (bubble_loop(*stack_a) == 0)
+            {
+                rotate_reverse(*stack_a, RRA);
+                bubble_sort(*stack_a, SA);
+            }
+            j--;
+        }
+		afficherListe(*stack_a);
 	}
 }
 

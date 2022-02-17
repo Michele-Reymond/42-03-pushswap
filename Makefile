@@ -6,7 +6,7 @@
 #    By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/11 19:48:18 by mreymond          #+#    #+#              #
-#    Updated: 2022/02/17 12:43:01 by mreymond         ###   ########.fr        #
+#    Updated: 2022/02/17 16:20:39 by mreymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRCS		= src/push_swap.c \
 			src/ps_swap.c \
 			src/ps_utils.c \
 			src/ps_algo_bubble.c \
-			src/ps_algo_pivot.c
+			src/ps_algo_pivot.c \
+			src/ps_algo_pivot2.c
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -40,15 +41,15 @@ $(NAME):	$(OBJS)
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 run:		
-			./$(NAME) -3 -4 6 20 -12 -1 0 -2 1 2 4 3 -5 5 77 65 29 -32 -43 19 487 22 -44 -21
+			./$(NAME) 2 1 3 6 5 8
 
 # -1 2 -5 1 -3 4 -2 -4 3 0 5
 # -3 -4 -1 0 -2 1 2 4 3 -5 5
 # 4 67 3 87 23 58 7 12
 
 test:
-			ARG="-3 -4 6 20 -12 -1 0 -2 1 2 4 3 -5 5"; ./$(NAME) $$ARG | wc -l
-			ARG="-3 -4 6 20 -12 -1 0 -2 1 2 4 3 -5 5"; ./$(NAME) $$ARG | ./checker_Mac $$ARG
+			ARG="-1 2 -5 1 -3 4 -2 -4 3 0 5"; ./$(NAME) $$ARG | wc -l
+			ARG="-1 2 -5 1 -3 4 -2 -4 3 0 5"; ./$(NAME) $$ARG | ./checker_Mac $$ARG
 
 visu:
 			python3 pyviz.py `ruby -e "puts (-200..200).to_a.shuffle.join(' ')"`

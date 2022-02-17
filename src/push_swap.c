@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:05:43 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/17 12:31:32 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/17 16:21:35 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	// printf("B: ");
 	// afficherListe(stack_b);
 
-	algo_pivot_sort(&stack_a, &stack_b);
+	algo_bubble_opti_sort(&stack_a);
 
 	// printf("A: ");
 	// afficherListe(stack_a);
