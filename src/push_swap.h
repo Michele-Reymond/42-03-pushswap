@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:08:35 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/17 19:27:39 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/17 22:50:16 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ t_list	*stock_string(char **av);
 void	bubble_algo_pas_opti(t_list *stack_a, t_list *stack_b);
 void	algo_bubble_opti_sort(t_list **stack);
 int		algo_pass(t_list ***stack, int size);
+int pivot_is_in_stack(t_list *stack_a, int pivot);
 int		check_order(t_list *stack, int nbr_to_check);
 int	check_order_reverse(t_list *stack, int nbr_to_check);
 void algo_bubble_opti_sort_reverse(t_list **stack_a, t_list **stack_b, int size);
