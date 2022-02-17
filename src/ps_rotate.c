@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ps_rotate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:01:09 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/16 17:56:29 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/17 10:53:16 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+// >>>>>>
 void	rotate_reverse(t_list *stack, char *move)
 {
 	t_nbr	*li_last;
@@ -32,6 +33,7 @@ void	rotate_reverse(t_list *stack, char *move)
 	printf("%s\n", move);
 }
 
+// <<<<<
 void	rotate(t_list *stack, char *move)
 {
 	t_nbr	*li_last;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:08:35 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/16 17:56:44 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/17 10:31:05 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,15 @@ typedef struct s_liste
 
 t_list	*stock_args(int count, char **arguments, int start);
 t_list	*stock_string(char **av);
+void	bubble_algo_pas_opti(t_list *stack_a, t_list *stack_b);
 void	delete_last(t_list *stack);
 void	insert_after(t_list *liste, long nbr);
 t_nbr	*find_last(t_list *stack);
 void	bubble_sort(t_list *stack, char *move);
 void	bubble_sort_big(t_list *stack, char *move);
+void algo_pivot_sort(t_list **stack_a, t_list **stack_b);
+int	bubble_loop_reverse(t_list *stack);
+int find_biggest_nbr(t_list *stack_a);
 int		bubble_loop(t_list *stack);
 void	swap(t_list *stack, char *move);
 void	push(t_list *src_stack, t_list **dst_stack, char *move);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+         #
+#    By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/11 19:48:18 by mreymond          #+#    #+#              #
-#    Updated: 2022/02/16 14:45:20 by mreymond         ###   ########.fr        #
+#    Updated: 2022/02/17 12:43:01 by mreymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRCS		= src/push_swap.c \
 			src/ps_rotate.c \
 			src/ps_swap.c \
 			src/ps_utils.c \
-			src/ps_algo_bubble.c
+			src/ps_algo_bubble.c \
+			src/ps_algo_pivot.c
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -39,7 +40,18 @@ $(NAME):	$(OBJS)
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 run:		
-			./$(NAME) 4 67 3 87 23
+			./$(NAME) -3 -4 6 20 -12 -1 0 -2 1 2 4 3 -5 5 77 65 29 -32 -43 19 487 22 -44 -21
+
+# -1 2 -5 1 -3 4 -2 -4 3 0 5
+# -3 -4 -1 0 -2 1 2 4 3 -5 5
+# 4 67 3 87 23 58 7 12
+
+test:
+			ARG="-3 -4 6 20 -12 -1 0 -2 1 2 4 3 -5 5"; ./$(NAME) $$ARG | wc -l
+			ARG="-3 -4 6 20 -12 -1 0 -2 1 2 4 3 -5 5"; ./$(NAME) $$ARG | ./checker_Mac $$ARG
+
+visu:
+			python3 pyviz.py `ruby -e "puts (-200..200).to_a.shuffle.join(' ')"`
 
 clean:
 			$(RM) $(OBJS)
@@ -51,4 +63,4 @@ fclean:		clean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re run
+.PHONY:		all clean fclean re run test visu
