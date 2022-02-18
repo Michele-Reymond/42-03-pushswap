@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:33:56 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/17 22:50:55 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/18 12:19:43 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int pivot_is_in_stack(t_list *stack_a, int pivot)
     return (0);
 }
 
-void algo_pivot_sort(t_list **stack_a, t_list **stack_b)
+char *algo_pivot_sort(t_list **stack_a, t_list **stack_b)
 {
     int pivot;
     int i;
@@ -96,14 +96,18 @@ void algo_pivot_sort(t_list **stack_a, t_list **stack_b)
     int count;
     int size;
     int tmp;
+    char *moves;
+    char *chartmp;
 
     pivot = find_biggest_nbr(*stack_a) + 10;
     count = 0;
     tmp = pivot - 10;
     size = (*stack_a)->size;
     sections = size / 13;
-    while (sections >= 0)
-    {
+    chartmp = ft_strdup("");
+    moves = ft_strdup("");
+    // while (sections >= 0)
+    // {
         count = 0;
         while (count < 1)
         {
@@ -113,20 +117,44 @@ void algo_pivot_sort(t_list **stack_a, t_list **stack_b)
             {
                 if (is_smaller((*stack_a)->first->number, pivot))
                 {
-                    push(*stack_a, stack_b, PB);
+                    moves = push(*stack_a, stack_b, PB, chartmp);
+                    chartmp = moves;
+                    free(moves);
+                    moves = NULL;
                     j++;
                 }
                 else if (pivot_is_in_stack(*stack_a, pivot))
-                    rotate(*stack_a, RA);
+                {
+                    moves = rotate(*stack_a, RA, chartmp);
+                    chartmp = moves;
+                    free(moves);
+                    moves = NULL;
+                }
                 i++;
             }
             pivot = find_biggest_nbr(*stack_a) + 10;
             count++;
         }
-        algo_bubble_opti_sort_reverse(stack_a, stack_b, j);
+        printf("ici: %s----", moves);
+        printf("tmp: %s----", chartmp);
+        moves = algo_bubble_opti_sort_reverse(stack_a, stack_b, j, chartmp);
+        printf("ici: %s----", moves);
+        printf("tmp: %s----", chartmp);
+        chartmp = moves;
+        free(moves);
+        moves = NULL;
         sections--;
-    }
-    algo_bubble_opti_sort(stack_a);
+    // }
+    moves = algo_bubble_opti_sort(stack_a, chartmp);
+    chartmp = moves;
+    free(moves);
+    moves = NULL;
      while ((*stack_b)->size > 0)
-		push(*stack_b, stack_a, PA);
+     {
+		moves = push(*stack_b, stack_a, PA, chartmp);
+        chartmp = moves;
+        // free(moves);
+        // moves = NULL;
+     }
+    return (chartmp);
 }

@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 15:02:01 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/17 22:46:43 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/18 11:25:20 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,13 @@ int	check_order_reverse(t_list *stack, int nbr_to_check)
 	return (1);
 }
 
-void algo_bubble_opti_sort(t_list **stack)
+char *algo_bubble_opti_sort(t_list **stack, char *moves)
 {
     int i;
     int size;
+    char *new_moves;
+    char *new_moves_rr;
+    char *new_moves_bubble;
   
     size = (*stack)->size - 1;
     while (check_order(*stack, (*stack)->size) == 0)
@@ -63,44 +66,54 @@ void algo_bubble_opti_sort(t_list **stack)
         i = 0;
         while (i < size)
         {
-            bubble_sort(*stack, SA);
-            rotate(*stack, RA);
+            new_moves_bubble = bubble_sort(*stack, SA, moves);
+            new_moves = rotate(*stack, RA, new_moves_bubble);
+            moves = new_moves;
             i++;
         }
         i = size;
         while (i > 0)
         {
-            rotate_reverse(*stack, RRA);
+            new_moves_rr = rotate_reverse(*stack, RRA, moves);
+            moves = new_moves_rr;
             i--;
         }
         size--;
     } 
+    return (moves);
 }
 
-void algo_bubble_opti_sort_reverse(t_list **stack_a, t_list **stack_b, int size)
+char *algo_bubble_opti_sort_reverse(t_list **stack_a, t_list **stack_b, int size, char *moves)
 {
     int i;
+    char *new_moves_b;
+    char *new_moves_a;
+    char *new_moves_rr_b;
+    char *new_moves_rr_a;
+    char *new_moves_bubble_b;
+    char *new_moves_bubble_a;
 
     while (check_order_reverse(*stack_b, (*stack_b)->size) == 0)
     {
         i = 0;
         while (i < size)
         {
-            bubble_sort_big(*stack_b, SB);
-            bubble_sort(*stack_a, SA);
-            rotate(*stack_b, RB);     
-            rotate(*stack_a, RA); 
-            // printf("rr\n");       
+            new_moves_bubble_b = bubble_sort_big(*stack_b, SB, moves);
+            new_moves_bubble_a = bubble_sort(*stack_a, SA, new_moves_bubble_b);
+            new_moves_b = rotate(*stack_b, RB, new_moves_bubble_a);     
+            new_moves_a = rotate(*stack_a, RA, new_moves_b);
+            moves = new_moves_a;   
             i++;
         }
         i = size;
         while (i > 0)
         {
-            rotate_reverse(*stack_b, RRB);
-            rotate_reverse(*stack_a, RRA);
-            // printf("rrr\n"); 
+            new_moves_rr_b = rotate_reverse(*stack_b, RRB, moves);
+            new_moves_rr_a = rotate_reverse(*stack_a, RRA, new_moves_rr_b);
+            moves = new_moves_rr_a;
             i--;
         }
         size--;
     } 
+    return (new_moves_rr_a);
 }

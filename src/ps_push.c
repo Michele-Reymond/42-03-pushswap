@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:01:17 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/17 22:47:27 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/18 12:17:49 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ t_nbr	*find_last(t_list *stack)
 	return (li_last);
 }
 
-void	push(t_list *src_stack, t_list **dst_stack, char *move)
+char	*push(t_list *src_stack, t_list **dst_stack, char *move, char *moves)
 {
 	int		nbr;
+	char	*new_moves;
 	t_nbr	*li_first;
 
 	li_first = src_stack->first;
@@ -39,7 +40,12 @@ void	push(t_list *src_stack, t_list **dst_stack, char *move)
 		*dst_stack = list_init(nbr);
 	else
 		insert_befor(*dst_stack, nbr);
+	if (ft_strnstr(move, "pa", 2))
+		new_moves = ft_strjoin(moves, "pa\n");
+	else
+		new_moves = ft_strjoin(moves, "pb\n");
 	printf("%s\n", move);
+	return (new_moves);
 }
 
 // void	push(t_list *src_stack, t_list **dst_stack)

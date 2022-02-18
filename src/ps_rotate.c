@@ -6,20 +6,23 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:01:09 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/17 22:46:17 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/18 12:05:50 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // >>>>>>
-void	rotate_reverse(t_list *stack, char *move)
+char	*rotate_reverse(t_list *stack, char *move, char *moves)
 {
 	t_nbr	*li_last;
 	t_nbr	*li_pos;
 	int		tmp;
 	int		tmp2;
+	char	*new_moves;
+	int 	i;
 
+	i = ft_strlen(moves);
 	li_last = find_last(stack);
 	li_pos = stack->first;
 	tmp2 = li_last->number;
@@ -30,17 +33,41 @@ void	rotate_reverse(t_list *stack, char *move)
 		tmp2 = tmp;
 		li_pos = li_pos->next;
 	}
+	if (ft_strnstr(move, "rra", 3))
+	{
+		if (moves[i - 2] == 'b' && moves[i - 3] == 'r' && moves[i - 4] == 'r')
+		{
+			new_moves = ft_strdup(moves);
+			new_moves[i - 2] = 'r';
+		}
+		else
+			new_moves = ft_strjoin(moves, "rra\n");
+	}
+	else
+	{
+		if (moves[i - 2] == 'a' && moves[i - 3] == 'r' && moves[i - 4] == 'r')
+		{
+			new_moves = ft_strdup(moves);
+			new_moves[i - 2] = 'r';
+		}
+		else
+			new_moves = ft_strjoin(moves, "rrb\n");
+	}
 	printf("%s\n", move);
+	return (new_moves);
 }
 
 // <<<<<
-void	rotate(t_list *stack, char *move)
+char	*rotate(t_list *stack, char *move, char *moves)
 {
 	t_nbr	*li_last;
 	t_nbr	*li_pos;
 	t_nbr	*li_next;
 	int		tmp;
+	int		i;
+	char	*new_moves;
 
+	i = ft_strlen(moves);
 	li_last = find_last(stack);
 	li_pos = stack->first;
 	while (li_pos->next != NULL)
@@ -51,5 +78,26 @@ void	rotate(t_list *stack, char *move)
 		li_next->number = tmp;
 		li_pos = li_pos->next;
 	}
+	if (ft_strnstr(move, "ra", 2))
+	{
+		if (moves[i - 2] == 'b' && moves[i - 3] == 'r' && moves[i - 1] == '\n')
+		{
+			new_moves = ft_strdup(moves);
+			new_moves[i - 2] = 'r';
+		}
+		else
+			new_moves = ft_strjoin(moves, "ra\n");
+	}
+	else
+	{
+		if (moves[i - 2] == 'a' && moves[i - 3] == 'r' && moves[i - 1] == '\n')
+		{
+			new_moves = ft_strdup(moves);
+			new_moves[i - 2] = 'r';
+		}
+		else
+			new_moves = ft_strjoin(moves, "rb\n");
+	}
 	printf("%s\n", move);
+	return (new_moves);
 }

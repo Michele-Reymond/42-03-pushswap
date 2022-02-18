@@ -6,7 +6,7 @@
 #    By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/11 19:48:18 by mreymond          #+#    #+#              #
-#    Updated: 2022/02/17 19:22:18 by mreymond         ###   ########.fr        #
+#    Updated: 2022/02/18 11:53:55 by mreymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,15 +41,15 @@ $(NAME):	$(OBJS)
 			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
 
 run:		
-			./$(NAME) 5 11 12 15 6 7 13 16 4 10 9 3 8 14 1 2
+			./$(NAME) 4 67 3 87 2
 
 # -1 2 -5 1 -3 4 -2 -4 3 0 5
 # -3 -4 -1 0 -2 1 2 4 3 -5 5
 # 4 67 3 87 23 58 7 12
 
 test:
-			ARG="5 11 12 15 6 7 13 16 4 10 9 3 8 14 1 2"; ./$(NAME) $$ARG | wc -l
-			ARG="5 11 12 15 6 7 13 16 4 10 9 3 8 14 1 2"; ./$(NAME) $$ARG | ./checker_Mac $$ARG
+			ARG="4 67 3 87 2"; ./$(NAME) $$ARG | wc -l
+			ARG="4 67 3 87 2"; ./$(NAME) $$ARG | ./checker_Mac $$ARG
 
 visu:
 			python3 pyviz.py `ruby -e "puts (-200..200).to_a.shuffle.join(' ')"`
