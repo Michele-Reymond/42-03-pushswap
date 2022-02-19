@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:01:05 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/18 11:54:53 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/19 15:30:24 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*swap(t_list *stack, char *move, char *moves)
 		else
 			new_moves = ft_strjoin(moves, "sb\n");
 	}
-	printf("%s\n", move);
+	// printf("%s\n", move);
 	return (new_moves);
 }
 

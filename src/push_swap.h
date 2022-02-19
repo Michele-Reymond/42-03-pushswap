@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:08:35 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/18 10:37:50 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/19 16:28:43 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,18 @@ typedef struct s_liste
 {
 	t_nbr	*first;
 	int		size;
+	int		last;
+	int		first_n;
+	int		biggest;
+	int		somme;
+	int		smallest;
 }	t_list;
+
+typedef struct s_pivot
+{
+	int	high;
+	int	low;
+}	t_pivot;
 
 t_list	*stock_args(int count, char **arguments, int start);
 t_list	*stock_string(char **av);
@@ -55,8 +66,8 @@ void	bubble_algo_reverse_pas_opti(t_list **stack_a);
 void	delete_last(t_list *stack);
 void	insert_after(t_list *liste, long nbr);
 t_nbr	*find_last(t_list *stack);
-char	*bubble_sort(t_list *stack, char *move, char *moves);
-char	*bubble_sort_big(t_list *stack, char *move, char *moves);
+int	bubble_sort(t_list *stack, char *move, char *moves);
+int		bubble_sort_big(t_list *stack, char *move, char *moves);
 char	*algo_pivot_sort(t_list **stack_a, t_list **stack_b);
 int		bubble_loop_reverse(t_list *stack);
 int		find_biggest_nbr(t_list *stack_a);
@@ -77,5 +88,13 @@ void	check_entry(t_list *stack, long entry);
 void	check_nbr(char *nbr, t_list *stack);
 char	*rotate(t_list *stack, char *move, char *moves);
 char	*rotate_reverse(t_list *stack, char *move, char *moves);
+void    stock_stack_infos(t_list **stack);
+t_pivot *make_pivot(t_list *stack);
+char *algo_pivot(t_list **stack_a, t_list **stack_b);
+int is_smaller(int nbr, int pivot);
+void bubble_sort_b(t_list **stack_a, t_list **stack_b, int size);
+void bubble_sort_reverse_b(t_list **stack_a, t_list **stack_b, int size);
+void bubble_sort_a(t_list **stack, int size);
+int is_bigger(int nbr, int pivot);
 
 #endif

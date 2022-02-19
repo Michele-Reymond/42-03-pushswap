@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:33:56 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/18 12:19:43 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/19 10:29:57 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ int find_biggest_nbr(t_list *stack_a)
     t_nbr *actual;
     int small_nbr;
     int pivot;
-    int times;
 
-    times = 3;
     actual = stack_a->first;
     small_nbr = actual->number;
     while (actual->next != NULL)
@@ -135,11 +133,7 @@ char *algo_pivot_sort(t_list **stack_a, t_list **stack_b)
             pivot = find_biggest_nbr(*stack_a) + 10;
             count++;
         }
-        printf("ici: %s----", moves);
-        printf("tmp: %s----", chartmp);
         moves = algo_bubble_opti_sort_reverse(stack_a, stack_b, j, chartmp);
-        printf("ici: %s----", moves);
-        printf("tmp: %s----", chartmp);
         chartmp = moves;
         free(moves);
         moves = NULL;

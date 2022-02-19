@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 15:02:01 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/18 11:25:20 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/19 13:09:12 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ char *algo_bubble_opti_sort_reverse(t_list **stack_a, t_list **stack_b, int size
     char *new_moves_bubble_b;
     char *new_moves_bubble_a;
 
-    while (check_order_reverse(*stack_b, (*stack_b)->size) == 0)
-    {
+    // while (check_order_reverse(*stack_b, (*stack_b)->size) == 0)
+    // {
         i = 0;
         while (i < size)
         {
@@ -114,6 +114,6 @@ char *algo_bubble_opti_sort_reverse(t_list **stack_a, t_list **stack_b, int size
             i--;
         }
         size--;
-    } 
+    // } 
     return (new_moves_rr_a);
 }

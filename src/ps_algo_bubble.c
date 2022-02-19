@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:41:22 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/18 10:44:55 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/19 15:23:52 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,35 +105,35 @@
 // }
 
 // si next est plus petit swap
-char	*bubble_sort(t_list *stack, char *move, char *moves)
+int	bubble_sort(t_list *stack, char *move, char *moves)
 {
 	t_nbr	*li_next;
 	t_nbr	*li_pos;
-	char *new_moves;
 
 	li_pos = stack->first;
 	li_next = li_pos->next;
 	if (li_next->number < li_pos->number)
-		new_moves = swap(stack, move, moves);
-	else
-		new_moves = ft_strdup("");
-	return (new_moves);
+	{
+		swap(stack, move, moves);
+		return (1);
+	}
+	return (0);
 }
 
 // si next est plus grand swap
-char	*bubble_sort_big(t_list *stack, char *move, char *moves)
+int	bubble_sort_big(t_list *stack, char *move, char *moves)
 {
 	t_nbr	*li_next;
 	t_nbr	*li_pos;
-	char *new_moves;
 	
 	li_pos = stack->first;
 	li_next = li_pos->next;
 	if (li_next->number > li_pos->number)
-		new_moves = swap(stack, move, moves);
-	else
-		new_moves = ft_strdup("");
-	return (new_moves);
+	{
+		swap(stack, move, moves);
+		return (1);
+	}
+	return (0);
 }
 
 // void	bubble_sort(t_list *stack)

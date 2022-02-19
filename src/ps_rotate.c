@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:01:09 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/18 12:05:50 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/19 14:45:03 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*rotate_reverse(t_list *stack, char *move, char *moves)
 		else
 			new_moves = ft_strjoin(moves, "rrb\n");
 	}
-	printf("%s\n", move);
+	// printf("%s\n", move);
 	return (new_moves);
 }
 
@@ -98,6 +98,6 @@ char	*rotate(t_list *stack, char *move, char *moves)
 		else
 			new_moves = ft_strjoin(moves, "rb\n");
 	}
-	printf("%s\n", move);
+	// printf("%s\n", move);
 	return (new_moves);
 }
