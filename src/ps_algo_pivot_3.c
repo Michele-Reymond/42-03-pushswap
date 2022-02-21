@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 10:24:13 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/21 19:09:01 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/22 00:13:10 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void    stock_stack_infos(t_list **stack)
             (*stack)->somme = (*stack)->somme + actual->number;
             actual = actual->next;
     }
+    if ((*stack)->smallest > actual->number)
+        (*stack)->smallest = actual->number;
+    if ((*stack)->biggest < actual->number)
+        (*stack)->biggest = actual->number;
+    (*stack)->somme = (*stack)->somme + actual->number;
     (*stack)->last = actual->number;
 }
 
@@ -308,4 +313,100 @@ char *algo_pivot(t_list **stack_a, t_list **stack_b)
         push(*stack_b, stack_a, PA, moves);
 
     return (moves);
+}
+
+char *algo_pivot_big(t_list **stack_a, t_list **stack_b)
+{
+    int pivot;
+    int pivot_low;
+    int i;
+    char *moves;
+    int size;
+    int pushed_small;
+
+    i = 0;
+    pushed_small = 0;
+    size = (*stack_a)->size;
+    moves = ft_strdup("");
+    pivot = ((*stack_a)->smallest + (*stack_a)->biggest) / 3 + 100;
+    pivot_low = (*stack_a)->smallest + 200;
+    while (i <= size && pivot_is_in_stack(*stack_a, pivot))
+    {
+        if (is_smaller((*stack_a)->first->number, pivot))
+        {
+            push(*stack_a, stack_b, PB, moves);
+            if (bubble_sort(*stack_a, SA, ""))
+                    printf("%s\n", "sa");
+            if ((*stack_b) && is_smaller((*stack_b)->first->number, pivot_low))
+            {
+                rotate(*stack_b, RB, moves);
+                printf("%s\n", "rb");
+            }
+            if ((*stack_b) && bubble_sort_big(*stack_b, SB, ""))
+                    printf("%s\n", "sb");
+        }
+        else
+        {
+            rotate(*stack_a, RA, moves);
+            printf("%s\n", "ra");
+        }
+        i++;
+    }
+    while ((*stack_a)->first != NULL)
+    {
+        push(*stack_a, stack_b, PB, moves);
+        if (bubble_sort_big(*stack_b, SB, ""))
+            printf("%s\n", "sb");
+    }
+    return (moves);
+}
+
+void    algo_lolo(t_list **stack_a, t_list **stack_b)
+{
+    char *moves;
+    int i;
+
+    moves = ft_strdup("");
+    i = 0;
+    push(*stack_b, stack_a, PA, moves);
+    push(*stack_b, stack_a, PA, moves);
+    if (bubble_sort(*stack_a, SA, ""))
+            printf("%s\n", "sa");
+    stock_stack_infos(stack_a);
+    printf("first b: %d\n", (*stack_b)->first->number);
+    printf("first a: %d\n", (*stack_a)->first->number);
+    printf("last: %d\n", (*stack_a)->last);
+    printf("biggest: %d\n", (*stack_a)->biggest);
+
+    while (i < 5)
+    {
+        stock_stack_infos(stack_a);
+        if ((*stack_b)->first->number < (*stack_a)->first->number)
+        {
+            while ((*stack_b)->first->number < (*stack_a)->first->number && (*stack_b)->first->number < (*stack_a)->last && (*stack_a)->last != (*stack_a)->biggest) 
+            {
+                rotate_reverse(*stack_a, RRA, moves);
+                printf("%s\n", "rra");
+                stock_stack_infos(stack_a);
+            }
+            push(*stack_b, stack_a, PA, moves);
+        }
+        else if ((*stack_b)->first->number > (*stack_a)->first->number)
+        {
+            while ((*stack_b)->first->number > (*stack_a)->first->number && (*stack_b)->first->number < (*stack_a)->biggest) 
+            {
+                rotate(*stack_a, RRA, moves);
+                printf("%s\n", "ra");
+                stock_stack_infos(stack_a);
+            }
+            while ((*stack_b)->first->number < (*stack_a)->biggest && (*stack_a)->biggest != (*stack_a)->first->number)
+            {
+                rotate(*stack_a, RRA, moves);
+                printf("%s\n", "ra");
+                stock_stack_infos(stack_a);
+            }
+            push(*stack_b, stack_a, PA, moves);
+        }
+        i++;
+    }
 }

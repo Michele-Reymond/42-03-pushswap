@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:08:35 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/19 16:28:43 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/21 22:59:44 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,7 @@ void bubble_sort_b(t_list **stack_a, t_list **stack_b, int size);
 void bubble_sort_reverse_b(t_list **stack_a, t_list **stack_b, int size);
 void bubble_sort_a(t_list **stack, int size);
 int is_bigger(int nbr, int pivot);
+char *algo_pivot_big(t_list **stack_a, t_list **stack_b);
+void    algo_lolo(t_list **stack_a, t_list **stack_b);
 
 #endif
