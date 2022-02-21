@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 10:24:13 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/19 16:50:19 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/21 13:56:00 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,15 @@ t_pivot *make_pivot(t_list *stack)
     pivot = malloc(sizeof(t_pivot *));
     if (stack->size > 5 && stack->size <= 20)
         pivot = make_middle_pivot(pivot, stack);
-    else if (stack->size > 20 && stack->size <= 100)
+    else if (stack->size > 20 && stack->size <= 150)
     {
-        pivot->high = stack->smallest + 5;
-        pivot->low = stack->smallest + 3;
+        pivot->high = stack->smallest + 10;
+        pivot->low = stack->smallest + 5;
     }
-    else if (stack->size > 100 && stack->size <= 500)
+    else if (stack->size > 150 && stack->size <= 550)
     {
-        pivot->high = stack->smallest + 40;
-        pivot->low = stack->smallest + 20;
+        pivot->high = stack->smallest + 60;
+        pivot->low = stack->smallest + 30;
     }
     else
     {
@@ -100,6 +100,8 @@ void bubble_sort_a(t_list **stack, int size)
         {
             rotate_reverse(*stack, RRA, "");
             printf("%s\n", "rra");
+            if ((*stack) && bubble_sort(*stack, SA, ""))
+                printf("%s\n", "sa");
             i--;
         }
         size--;
@@ -139,6 +141,8 @@ void bubble_sort_b(t_list **stack_a, t_list **stack_b, int size)
             rotate_reverse(*stack_b, RRB, "");
             rotate_reverse(*stack_a, RRA, "");
             printf("%s\n", "rrr");
+            if ((*stack_b) && bubble_sort_big(*stack_b, SB, ""))
+                printf("%s\n", "sb");
             i--;
         }
         size--;
@@ -200,26 +204,31 @@ char *algo_pivot(t_list **stack_a, t_list **stack_b)
     pushed_small = 0;
     moves = ft_strdup("");
     size = (*stack_a)->size;
-
-    pivot->high = (*stack_a)->smallest + 10;
-    pivot->low = (*stack_a)->smallest + 5; 
     
-    while (i < size)
+    while (i <= size && pivot_is_in_stack(*stack_a, pivot->high))
     {
         if (is_smaller((*stack_a)->first->number, pivot->high))
+        {
             push(*stack_a, stack_b, PB, moves);
+            if ((*stack_b) && is_smaller((*stack_b)->first->number, pivot->low))
+            {
+                rotate_reverse(*stack_b, RRB, moves);
+                printf("%s\n", "rrb");
+                if ((*stack_b) && bubble_sort_big(*stack_b, SB, ""))
+                    printf("%s\n", "sb");
+                rotate(*stack_b, RB, moves);
+                rotate(*stack_b, RB, moves);
+                printf("%s\n", "rb");
+                printf("%s\n", "rb");
+                pushed_small++;
+            }
+            if ((*stack_b) && bubble_sort_big(*stack_b, SB, ""))
+                    printf("%s\n", "sb");
+        }
         else
         {
             rotate(*stack_a, RA, moves);
             printf("%s\n", "ra");
-        }
-        if ((*stack_b) && is_smaller((*stack_b)->first->number, pivot->low))
-        {
-            rotate(*stack_b, RB, moves);
-            printf("%s\n", "rb");
-            if (bubble_sort_big(*stack_b, SB, ""))
-                printf("%s\n", "sb");
-            pushed_small++;
         }
         i++;
     }
@@ -245,369 +254,48 @@ char *algo_pivot(t_list **stack_a, t_list **stack_b)
     last_pivot = pivot->high;
     pivot->high = pivot->high + 10;
     pivot->low = last_pivot + 5; 
-    i = 0;
-    j = 0;
-    pushed_small = 0;
     size = (*stack_a)->size;
 
-    while (i < size)    
+    while (pivot->high < (*stack_a)->biggest)
     {
-        if (is_smaller((*stack_a)->first->number, pivot->high))
+        i = 0;
+        j = 0;
+        pushed_small = 0;
+        while (i <= size)    
         {
-            push(*stack_a, stack_b, PB, moves);
-            j++;
+            if (is_smaller((*stack_a)->first->number, pivot->high))
+            {
+                push(*stack_a, stack_b, PB, moves);
+                if ((*stack_b)->first->number > last_pivot && is_bigger((*stack_b)->first->number, pivot->low))
+                {
+                    rotate(*stack_b, RB, moves);
+                    printf("%s\n", "rb");
+                    pushed_small++;
+                }
+                j++;
+            }
+            else
+            {
+                rotate(*stack_a, RA, moves);
+                printf("%s\n", "ra");
+            }
+            i++;
         }
-        else
+        bubble_sort_b(stack_a, stack_b, j - pushed_small + 1);
+        i = 0;
+        while (i < pushed_small)
         {
-            rotate(*stack_a, RA, moves);
-            printf("%s\n", "ra");
+            rotate_reverse(*stack_b, RRB, moves);
+            printf("%s\n", "rrb");
+            i++;
         }
-        if ((*stack_b)->first->number > last_pivot && is_bigger((*stack_b)->first->number, pivot->low))
-        {
-            rotate(*stack_b, RB, moves);
-            printf("%s\n", "rb");
-            pushed_small++;
-        }
-        i++;
+        bubble_sort_b(stack_a, stack_b, pushed_small);
+        last_pivot = pivot->high;
+        pivot->high = pivot->high + 10;
+        pivot->low = last_pivot + 5; 
+        size = (*stack_a)->size;
     }
-    bubble_sort_b(stack_a, stack_b, j - pushed_small + 1);
-    i = 0;
-    while (i < pushed_small)
-    {
-        rotate_reverse(*stack_b, RRB, moves);
-        printf("%s\n", "rrb");
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, pushed_small);
 
-
-
-
-
-    last_pivot = pivot->high;
-    pivot->high = pivot->high + 10;
-    pivot->low = last_pivot + 5; 
-    i = 0;
-    j = 0;
-    pushed_small = 0;
-    size = (*stack_a)->size;
-
-    while (i < size)    
-    {
-        if (is_smaller((*stack_a)->first->number, pivot->high))
-        {
-            push(*stack_a, stack_b, PB, moves);
-            j++;
-        }
-        else
-        {
-            rotate(*stack_a, RA, moves);
-            printf("%s\n", "ra");
-        }
-        if ((*stack_b)->first->number > last_pivot && is_bigger((*stack_b)->first->number, pivot->low))
-        {
-            rotate(*stack_b, RB, moves);
-            printf("%s\n", "rb");
-            pushed_small++;
-        }
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, j - pushed_small + 1);
-    i = 0;
-    while (i < pushed_small)
-    {
-        rotate_reverse(*stack_b, RRB, moves);
-        printf("%s\n", "rrb");
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, pushed_small);
-
-
-
-
-
-
-    last_pivot = pivot->high;
-    pivot->high = pivot->high + 10;
-    pivot->low = last_pivot + 5; 
-    i = 0;
-    j = 0;
-    pushed_small = 0;
-    size = (*stack_a)->size;
-
-    while (i < size)    
-    {
-        if (is_smaller((*stack_a)->first->number, pivot->high))
-        {
-            push(*stack_a, stack_b, PB, moves);
-            j++;
-        }
-        else
-        {
-            rotate(*stack_a, RA, moves);
-            printf("%s\n", "ra");
-        }
-        if ((*stack_b)->first->number > last_pivot && is_bigger((*stack_b)->first->number, pivot->low))
-        {
-            rotate(*stack_b, RB, moves);
-            printf("%s\n", "rb");
-            pushed_small++;
-        }
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, j - pushed_small + 1);
-    i = 0;
-    while (i < pushed_small)
-    {
-        rotate_reverse(*stack_b, RRB, moves);
-        printf("%s\n", "rrb");
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, pushed_small);
-
-
-
-
-
-
-    last_pivot = pivot->high;
-    pivot->high = pivot->high + 10;
-    pivot->low = last_pivot + 5; 
-    i = 0;
-    j = 0;
-    pushed_small = 0;
-    size = (*stack_a)->size;
-
-    while (i < size)    
-    {
-        if (is_smaller((*stack_a)->first->number, pivot->high))
-        {
-            push(*stack_a, stack_b, PB, moves);
-            j++;
-        }
-        else
-        {
-            rotate(*stack_a, RA, moves);
-            printf("%s\n", "ra");
-        }
-        if ((*stack_b)->first->number > last_pivot && is_bigger((*stack_b)->first->number, pivot->low))
-        {
-            rotate(*stack_b, RB, moves);
-            printf("%s\n", "rb");
-            pushed_small++;
-        }
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, j - pushed_small + 1);
-    i = 0;
-    while (i < pushed_small)
-    {
-        rotate_reverse(*stack_b, RRB, moves);
-        printf("%s\n", "rrb");
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, pushed_small);
-
-       last_pivot = pivot->high;
-    pivot->high = pivot->high + 10;
-    pivot->low = last_pivot + 5; 
-    i = 0;
-    j = 0;
-    pushed_small = 0;
-    size = (*stack_a)->size;
-
-    while (i < size)    
-    {
-        if (is_smaller((*stack_a)->first->number, pivot->high))
-        {
-            push(*stack_a, stack_b, PB, moves);
-            j++;
-        }
-        else
-        {
-            rotate(*stack_a, RA, moves);
-            printf("%s\n", "ra");
-        }
-        if ((*stack_b)->first->number > last_pivot && is_bigger((*stack_b)->first->number, pivot->low))
-        {
-            rotate(*stack_b, RB, moves);
-            printf("%s\n", "rb");
-            pushed_small++;
-        }
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, j - pushed_small + 1);
-    i = 0;
-    while (i < pushed_small)
-    {
-        rotate_reverse(*stack_b, RRB, moves);
-        printf("%s\n", "rrb");
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, pushed_small);
-
-           last_pivot = pivot->high;
-    pivot->high = pivot->high + 10;
-    pivot->low = last_pivot + 5; 
-    i = 0;
-    j = 0;
-    pushed_small = 0;
-    size = (*stack_a)->size;
-
-    while (i < size)    
-    {
-        if (is_smaller((*stack_a)->first->number, pivot->high))
-        {
-            push(*stack_a, stack_b, PB, moves);
-            j++;
-        }
-        else
-        {
-            rotate(*stack_a, RA, moves);
-            printf("%s\n", "ra");
-        }
-        if ((*stack_b)->first->number > last_pivot && is_bigger((*stack_b)->first->number, pivot->low))
-        {
-            rotate(*stack_b, RB, moves);
-            printf("%s\n", "rb");
-            pushed_small++;
-        }
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, j - pushed_small + 1);
-    i = 0;
-    while (i < pushed_small)
-    {
-        rotate_reverse(*stack_b, RRB, moves);
-        printf("%s\n", "rrb");
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, pushed_small);
-
-    last_pivot = pivot->high;
-    pivot->high = pivot->high + 10;
-    pivot->low = last_pivot + 5; 
-    i = 0;
-    j = 0;
-    pushed_small = 0;
-    size = (*stack_a)->size;
-
-    while (i < size)    
-    {
-        if (is_smaller((*stack_a)->first->number, pivot->high))
-        {
-            push(*stack_a, stack_b, PB, moves);
-            j++;
-        }
-        else
-        {
-            rotate(*stack_a, RA, moves);
-            printf("%s\n", "ra");
-        }
-        if ((*stack_b)->first->number > last_pivot && is_bigger((*stack_b)->first->number, pivot->low))
-        {
-            rotate(*stack_b, RB, moves);
-            printf("%s\n", "rb");
-            pushed_small++;
-        }
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, j - pushed_small + 1);
-    i = 0;
-    while (i < pushed_small)
-    {
-        rotate_reverse(*stack_b, RRB, moves);
-        printf("%s\n", "rrb");
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, pushed_small);
-
-
-    last_pivot = pivot->high;
-    pivot->high = pivot->high + 8;
-    pivot->low = last_pivot + 3; 
-    i = 0;
-    j = 0;
-    pushed_small = 0;
-    size = (*stack_a)->size;
-
-    while (i < size)    
-    {
-        if (is_smaller((*stack_a)->first->number, pivot->high))
-        {
-            push(*stack_a, stack_b, PB, moves);
-            j++;
-        }
-        else
-        {
-            rotate(*stack_a, RA, moves);
-            printf("%s\n", "ra");
-        }
-        if ((*stack_b)->first->number > last_pivot && is_bigger((*stack_b)->first->number, pivot->low))
-        {
-            rotate(*stack_b, RB, moves);
-            printf("%s\n", "rb");
-            pushed_small++;
-        }
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, j - pushed_small + 1);
-    i = 0;
-    while (i < pushed_small)
-    {
-        rotate_reverse(*stack_b, RRB, moves);
-        printf("%s\n", "rrb");
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, pushed_small);
-
-
-
-
-
-
-
-    last_pivot = pivot->high;
-    pivot->high = pivot->high + 8;
-    pivot->low = last_pivot + 3; 
-    i = 0;
-    j = 0;
-    pushed_small = 0;
-    size = (*stack_a)->size;
-
-    while (i < size)    
-    {
-        if (is_smaller((*stack_a)->first->number, pivot->high))
-        {
-            push(*stack_a, stack_b, PB, moves);
-            j++;
-        }
-        else
-        {
-            rotate(*stack_a, RA, moves);
-            printf("%s\n", "ra");
-        }
-        if ((*stack_b)->first->number > last_pivot && is_bigger((*stack_b)->first->number, pivot->low))
-        {
-            rotate(*stack_b, RB, moves);
-            printf("%s\n", "rb");
-            pushed_small++;
-        }
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, j - pushed_small + 1);
-    i = 0;
-    while (i < pushed_small)
-    {
-        rotate_reverse(*stack_b, RRB, moves);
-        printf("%s\n", "rrb");
-        i++;
-    }
-    bubble_sort_b(stack_a, stack_b, pushed_small);
-
-    
-
-    
     bubble_sort_a(stack_a, (*stack_a)->size);
     while ((*stack_b)->first != NULL)
         push(*stack_b, stack_a, PA, moves);
@@ -615,5 +303,8 @@ char *algo_pivot(t_list **stack_a, t_list **stack_b)
     return (moves);
 }
 
-// si plus petit que pivot high mettre dans B
-// dans B si plus petit que pivot low mettre a la fin de B
+// TO DO
+
+// While pivot est plus petit que max dans stack_a
+// selection du pivot à ajuster
+// 

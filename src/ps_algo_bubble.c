@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:41:22 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/19 15:23:52 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/21 13:29:58 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ int	bubble_sort(t_list *stack, char *move, char *moves)
 
 	li_pos = stack->first;
 	li_next = li_pos->next;
+	if (stack->first == NULL || li_pos->next == NULL)
+		return (0);
 	if (li_next->number < li_pos->number)
 	{
 		swap(stack, move, moves);
@@ -128,6 +130,8 @@ int	bubble_sort_big(t_list *stack, char *move, char *moves)
 	
 	li_pos = stack->first;
 	li_next = li_pos->next;
+	if (stack->first == NULL || li_pos->next == NULL)
+		return (0);
 	if (li_next->number > li_pos->number)
 	{
 		swap(stack, move, moves);

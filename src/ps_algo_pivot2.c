@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 15:02:01 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/19 13:09:12 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/19 16:57:38 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ char *algo_bubble_opti_sort(t_list **stack, char *moves)
     int size;
     char *new_moves;
     char *new_moves_rr;
-    char *new_moves_bubble;
+    char *new_moves_bubble = NULL;
   
     size = (*stack)->size - 1;
     while (check_order(*stack, (*stack)->size) == 0)
@@ -66,7 +66,7 @@ char *algo_bubble_opti_sort(t_list **stack, char *moves)
         i = 0;
         while (i < size)
         {
-            new_moves_bubble = bubble_sort(*stack, SA, moves);
+            bubble_sort(*stack, SA, moves);
             new_moves = rotate(*stack, RA, new_moves_bubble);
             moves = new_moves;
             i++;
@@ -90,16 +90,16 @@ char *algo_bubble_opti_sort_reverse(t_list **stack_a, t_list **stack_b, int size
     char *new_moves_a;
     char *new_moves_rr_b;
     char *new_moves_rr_a;
-    char *new_moves_bubble_b;
-    char *new_moves_bubble_a;
+    char *new_moves_bubble_b = NULL;
+    char *new_moves_bubble_a = NULL;
 
     // while (check_order_reverse(*stack_b, (*stack_b)->size) == 0)
     // {
         i = 0;
         while (i < size)
         {
-            new_moves_bubble_b = bubble_sort_big(*stack_b, SB, moves);
-            new_moves_bubble_a = bubble_sort(*stack_a, SA, new_moves_bubble_b);
+            bubble_sort_big(*stack_b, SB, moves);
+            bubble_sort(*stack_a, SA, new_moves_bubble_b);
             new_moves_b = rotate(*stack_b, RB, new_moves_bubble_a);     
             new_moves_a = rotate(*stack_a, RA, new_moves_b);
             moves = new_moves_a;   
