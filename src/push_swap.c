@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:05:43 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/21 23:19:51 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/22 00:46:37 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,13 @@ int	main(int argc, char **argv)
 	// moves = algo_pivot_sort(&stack_a, &stack_b);
 	// printf("char: %s", moves);
 	stock_stack_infos(&stack_a);
-	// algo_pivot_big(&stack_a, &stack_b);
-	while (stack_a->first != NULL)
-        push(stack_a, &stack_b, PB, "");
+	algo_pivot_big(&stack_a, &stack_b);
 	algo_lolo(&stack_a, &stack_b);
 	
-	printf("A: ");
-	afficherListe(stack_a);
-	printf("B: ");
-	afficherListe(stack_b);
+	// printf("A: ");
+	// afficherListe(stack_a);
+	// printf("B: ");
+	// afficherListe(stack_b);
 
 	// free(moves);
 	free_list(stack_a);

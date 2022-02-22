@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/19 10:24:13 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/22 00:13:10 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/22 00:59:52 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,7 @@ void bubble_sort_b(t_list **stack_a, t_list **stack_b, int size)
         size--;
     } 
 }
+
 
 void bubble_sort_reverse_b(t_list **stack_a, t_list **stack_b, int size)
 {
@@ -364,21 +365,19 @@ char *algo_pivot_big(t_list **stack_a, t_list **stack_b)
 void    algo_lolo(t_list **stack_a, t_list **stack_b)
 {
     char *moves;
-    int i;
 
     moves = ft_strdup("");
-    i = 0;
-    push(*stack_b, stack_a, PA, moves);
-    push(*stack_b, stack_a, PA, moves);
-    if (bubble_sort(*stack_a, SA, ""))
-            printf("%s\n", "sa");
-    stock_stack_infos(stack_a);
-    printf("first b: %d\n", (*stack_b)->first->number);
-    printf("first a: %d\n", (*stack_a)->first->number);
-    printf("last: %d\n", (*stack_a)->last);
-    printf("biggest: %d\n", (*stack_a)->biggest);
+    while ((*stack_a)->size < 10)
+        push(*stack_b, stack_a, PA, moves);
+    bubble_sort_a(stack_a, (*stack_a)->size);
+    while ((*stack_a)->last != (*stack_a)->biggest)
+    {
+        rotate(*stack_a, RA, moves);
+        printf("%s\n", "ra");
+        stock_stack_infos(stack_a);
+    }
 
-    while (i < 5)
+    while ((*stack_b)->size > 0)
     {
         stock_stack_infos(stack_a);
         if ((*stack_b)->first->number < (*stack_a)->first->number)
@@ -393,20 +392,31 @@ void    algo_lolo(t_list **stack_a, t_list **stack_b)
         }
         else if ((*stack_b)->first->number > (*stack_a)->first->number)
         {
-            while ((*stack_b)->first->number > (*stack_a)->first->number && (*stack_b)->first->number < (*stack_a)->biggest) 
+            if ((*stack_b)->first->number > (*stack_a)->biggest)
             {
-                rotate(*stack_a, RRA, moves);
-                printf("%s\n", "ra");
-                stock_stack_infos(stack_a);
+                while ((*stack_b)->first->number != (*stack_a)->biggest)
+                {
+                    rotate(*stack_a, RRA, moves);
+                    printf("%s\n", "ra");
+                    stock_stack_infos(stack_a);
+                }
             }
-            while ((*stack_b)->first->number < (*stack_a)->biggest && (*stack_a)->biggest != (*stack_a)->first->number)
+            else
             {
-                rotate(*stack_a, RRA, moves);
-                printf("%s\n", "ra");
-                stock_stack_infos(stack_a);
+                while ((*stack_b)->first->number > (*stack_a)->first->number && (*stack_b)->first->number < (*stack_a)->biggest) 
+                {
+                    rotate(*stack_a, RRA, moves);
+                    printf("%s\n", "ra");
+                    stock_stack_infos(stack_a);
+                }
             }
             push(*stack_b, stack_a, PA, moves);
         }
-        i++;
+    }
+    while ((*stack_a)->last != (*stack_a)->biggest)
+    {
+        rotate_reverse(*stack_a, RA, moves);
+        printf("%s\n", "rra");
+        stock_stack_infos(stack_a);
     }
 }
