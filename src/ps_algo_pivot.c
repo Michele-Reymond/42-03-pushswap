@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 09:33:56 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/19 10:29:57 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/22 19:35:54 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,4 +151,135 @@ char *algo_pivot_sort(t_list **stack_a, t_list **stack_b)
         // moves = NULL;
      }
     return (chartmp);
+}
+
+// cimetière de fonctions inutiles
+
+char *algo_pivot_big(t_list **stack_a, t_list **stack_b)
+{
+	int pivot;
+	int pivot_low;
+	int i;
+	char *moves;
+	int size;
+	int pushed_small;
+
+	i = 0;
+	pushed_small = 0;
+	size = (*stack_a)->size;
+	moves = ft_strdup("");
+	pivot = ((*stack_a)->smallest + (*stack_a)->biggest) / 3 + 100;
+	pivot_low = (*stack_a)->smallest + 200;
+	while (i <= size && pivot_is_in_stack(*stack_a, pivot))
+	{
+		if (is_smaller((*stack_a)->first->number, pivot))
+		{
+			push(*stack_a, stack_b, PB, moves);
+			if (bubble_sort(*stack_a, SA, ""))
+					printf("%s\n", "sa");
+			if ((*stack_b) && is_smaller((*stack_b)->first->number, pivot_low))
+			{
+				rotate(*stack_b, RB, moves);
+				printf("%s\n", "rb");
+			}
+			if ((*stack_b) && bubble_sort_big(*stack_b, SB, ""))
+					printf("%s\n", "sb");
+		}
+		else
+		{
+			rotate(*stack_a, RA, moves);
+			printf("%s\n", "ra");
+		}
+		i++;
+	}
+	stock_stack_infos(stack_a);
+	while ((*stack_a)->size > 10)
+	{
+		push(*stack_a, stack_b, PB, moves);
+		if (bubble_sort_big(*stack_b, SB, ""))
+			printf("%s\n", "sb");
+		stock_stack_infos(stack_a);
+	}
+	return (moves);
+}
+
+void bubble_sort_reverse_b(t_list **stack_a, t_list **stack_b, int size)
+{
+	int i;
+	int a;
+	int b;
+
+	i = 0;
+	a = 0;
+	b = 0;  
+	while (check_order(*stack_b, size) == 0)
+	{
+		i = 0;
+		afficherListe(*stack_b);
+		while (i < size)
+		{
+			b = bubble_sort(*stack_b, SB, "");
+			a = bubble_sort(*stack_a, SA, "");
+			if (a == 1 && b == 1)
+				printf("%s\n", "ss");
+			else if (b == 1)
+				printf("%s\n", "sb");
+			else if (a == 1)
+				printf("%s\n", "sa");
+			rotate(*stack_b, RB, "");     
+			rotate(*stack_a, RA, "");
+			printf("%s\n", "rr");
+			i++;
+		}
+		i = size;
+		while (i > 0)
+		{
+			rotate_reverse(*stack_b, RRB, "");
+			rotate_reverse(*stack_a, RRA, "");
+			printf("%s\n", "rrr");
+			i--;
+		}
+	} 
+}
+
+
+void bubble_sort_b(t_list **stack_a, t_list **stack_b, int size)
+{
+	int i;
+	int a;
+	int b;
+
+	i = 0;
+	a = 0;
+	b = 0; 
+	while (check_order_reverse(*stack_b, size + 1) == 0)
+	{
+		i = 0;
+		while (i < size)
+		{
+			b = bubble_sort_big(*stack_b, SB, "");
+			a = bubble_sort(*stack_a, SA, "");
+			if (a == 1 && b == 1)
+				printf("%s\n", "ss");
+			if (b == 1 && a == 0)
+				printf("%s\n", "sb");
+			if (a == 1 && b == 0)
+				printf("%s\n", "sa");
+			rotate(*stack_b, RB, "");     
+			rotate(*stack_a, RA, "");
+			printf("%s\n", "rr");
+			i++;
+		}
+		i = 0;
+		while (i < size)
+		{
+			rotate_reverse(*stack_b, RRB, "");
+			rotate_reverse(*stack_a, RRA, "");
+			printf("%s\n", "rrr");
+			if ((*stack_b) && bubble_sort_big(*stack_b, SB, ""))
+				printf("%s\n", "sb");
+			i++;
+		}
+		size--;
+	} 
 }

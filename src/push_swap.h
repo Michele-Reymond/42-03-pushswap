@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:08:35 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/21 22:59:44 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/22 21:13:38 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_pivot
 {
 	int	high;
 	int	low;
+	int	add;
 }	t_pivot;
 
 t_list	*stock_args(int count, char **arguments, int start);
@@ -90,13 +91,15 @@ char	*rotate(t_list *stack, char *move, char *moves);
 char	*rotate_reverse(t_list *stack, char *move, char *moves);
 void    stock_stack_infos(t_list **stack);
 t_pivot *make_pivot(t_list *stack);
-char *algo_pivot(t_list **stack_a, t_list **stack_b);
+void	algo_pivot_push(t_list **stack_a, t_list **stack_b);
 int is_smaller(int nbr, int pivot);
 void bubble_sort_b(t_list **stack_a, t_list **stack_b, int size);
 void bubble_sort_reverse_b(t_list **stack_a, t_list **stack_b, int size);
 void bubble_sort_a(t_list **stack, int size);
 int is_bigger(int nbr, int pivot);
 char *algo_pivot_big(t_list **stack_a, t_list **stack_b);
-void    algo_lolo(t_list **stack_a, t_list **stack_b);
+void    algo_pivot_back(t_list **stack_a, t_list **stack_b);
+int heart(t_list ***stack_a, t_list ***stack_b, t_pivot	*pivot, int size, char *moves);
+void is_smaller_algo(t_list ***stack_a, t_list ***stack_b);
 
 #endif
