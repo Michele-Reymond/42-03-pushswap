@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_linked_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:10:52 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/16 16:15:49 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/24 21:13:43 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	afficherListe(t_list *liste)
 
 	if (liste == NULL)
 	{
-		printf("ouin ouin\n");
+		printf("Liste nulle\n");
 		return ;
 	}
 	actuel = liste->first;

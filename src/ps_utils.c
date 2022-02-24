@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:59:38 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/16 15:19:23 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/24 21:16:53 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,27 +75,17 @@ t_list	*stock_args(int count, char **arguments, int start)
 	return (stack);
 }
 
-// t_list	*stock_args(int count, char **arguments, int start)
-// {
-// 	t_list	*stack;
-// 	int		j;
-// 	int		end;
-// 	long	entry;
+t_nbr	*find_last(t_list *stack)
+{
+	int		i;
+	t_nbr	*li_last;
 
-// 	j = start;
-// 	stack = NULL;
-// 	check_nbr(arguments[j], stack);
-// 	entry = ft_atol(arguments[j]);
-// 	check_max(entry);
-// 	stack = list_init(entry);
-// 	j++;
-// 	while (j < count)
-// 	{
-// 		check_nbr(arguments[j], stack);
-// 		entry = ft_atol(arguments[j]);
-// 		check_entry(stack, entry);
-// 		insert_befor(stack, entry);
-// 		j++;
-// 	}
-// 	return (stack);
-// }
+	i = 1;
+	li_last = stack->first;
+	while (i < stack->size)
+	{
+		li_last = li_last->next;
+		i++;
+	}
+	return (li_last);
+}

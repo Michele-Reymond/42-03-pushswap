@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:05:43 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/24 11:36:15 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/24 21:01:45 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int argc, char **argv)
 		stack_a = stock_args(argc, argv, 1);
 	stock_stack_infos(&stack_a);
 	if (stack_a->size <= 3)
-		algo_tree(&stack_a);
+		algo_three(&stack_a);
 	else if (stack_a->size > 3 && stack_a->size <= 5)
 		algo_five(&stack_a, &stack_b);
 	else
