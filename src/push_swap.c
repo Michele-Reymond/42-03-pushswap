@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:05:43 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/22 21:13:23 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/24 11:36:15 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,15 @@ int	main(int argc, char **argv)
 	else
 		stack_a = stock_args(argc, argv, 1);
 	stock_stack_infos(&stack_a);
-	algo_pivot_push(&stack_a, &stack_b);
-	// stock_stack_infos(&stack_a);
-	algo_pivot_back(&stack_a, &stack_b);
+	if (stack_a->size <= 3)
+		algo_tree(&stack_a);
+	else if (stack_a->size > 3 && stack_a->size <= 5)
+		algo_five(&stack_a, &stack_b);
+	else
+	{
+		algo_pivot_push(&stack_a, &stack_b);
+		algo_pivot_back(&stack_a, &stack_b);
+	}
 	free_list(stack_a);
 	free_list(stack_b);
 	return (0);

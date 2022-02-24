@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:08:35 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/22 21:13:38 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/24 12:09:23 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,8 @@ char *algo_pivot_big(t_list **stack_a, t_list **stack_b);
 void    algo_pivot_back(t_list **stack_a, t_list **stack_b);
 int heart(t_list ***stack_a, t_list ***stack_b, t_pivot	*pivot, int size, char *moves);
 void is_smaller_algo(t_list ***stack_a, t_list ***stack_b);
+void algo_tree(t_list **stack);
+void algo_five(t_list **stack_a, t_list **stack_b);
+int heart_reverse(t_list ***stack_a, t_list ***stack_b, t_pivot	*pivot, int size, char *moves);
 
 #endif
