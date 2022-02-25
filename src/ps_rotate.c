@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:01:09 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/25 00:11:31 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/25 09:51:25 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,16 @@ void	rotate_reverse(t_list *stack, char *move)
 	printf("%s\n", move);
 }
 
-void	make_rotation(t_list **stack)
+// <<<<<
+void	rotate(t_list *stack, char *move)
 {
 	t_nbr	*li_last;
 	t_nbr	*li_pos;
 	t_nbr	*li_next;
 	int		tmp;
 
-	li_last = find_last(*stack);
-	li_pos = (*stack)->first;
+	li_last = find_last(stack);
+	li_pos = stack->first;
 	while (li_pos->next != NULL)
 	{
 		li_next = li_pos->next;
@@ -50,30 +51,30 @@ void	make_rotation(t_list **stack)
 		li_next->number = tmp;
 		li_pos = li_pos->next;
 	}
+	printf("%s\n", move);
 }
 
-// <<<<<
-char	*rotate(t_list *stack, char *move, char *moves)
-{
-	int		len;
+// char	*rotate(t_list *stack, char *move, char *moves)
+// {
+// 	int		len;
 
-	len = ft_strlen(moves);
-	make_rotation(&stack);
-	if (ft_strnstr(move, "ra", 2))
-	{
-		if (moves[len - 2] == 'b' && moves[len - 3] == 'r' && 
-			moves[len - 1] == '\n')
-			moves[len - 2] = 'r';
-		else
-			moves = ft_strjoin(moves, "ra\n");
-	}
-	else
-	{
-		if (moves[len - 2] == 'a' && moves[len - 3] == 'r' 
-			&& moves[len - 1] == '\n')
-			moves[len - 2] = 'r';
-		else
-			moves = ft_strjoin(moves, "rb\n");
-	}
-	return (moves);
-}
+// 	len = ft_strlen(moves);
+// 	make_rotation(&stack);
+// 	if (ft_strnstr(move, "ra", 2))
+// 	{
+// 		if (moves[len - 2] == 'b' && moves[len - 3] == 'r' && 
+// 			moves[len - 1] == '\n')
+// 			moves[len - 2] = 'r';
+// 		else
+// 			moves = ft_strjoin(moves, "ra\n");
+// 	}
+// 	else
+// 	{
+// 		if (moves[len - 2] == 'a' && moves[len - 3] == 'r' 
+// 			&& moves[len - 1] == '\n')
+// 			moves[len - 2] = 'r';
+// 		else
+// 			moves = ft_strjoin(moves, "rb\n");
+// 	}
+// 	return (moves);
+// }

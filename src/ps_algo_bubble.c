@@ -6,14 +6,14 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 13:41:22 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/24 23:49:39 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/25 09:57:49 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // si next est plus petit swap
-int	bubble_sort(t_list *stack, char *move)
+void	bubble_sort(t_list *stack, char *move)
 {
 	t_nbr	*li_next;
 	t_nbr	*li_pos;
@@ -21,17 +21,13 @@ int	bubble_sort(t_list *stack, char *move)
 	li_pos = stack->first;
 	li_next = li_pos->next;
 	if (stack->first == NULL || li_pos->next == NULL)
-		return (0);
+		return ;
 	if (li_next->number < li_pos->number)
-	{
 		swap(stack, move);
-		return (1);
-	}
-	return (0);
 }
 
 // si next est plus grand swap
-int	bubble_sort_big(t_list *stack, char *move)
+void	bubble_sort_big(t_list *stack, char *move)
 {
 	t_nbr	*li_next;
 	t_nbr	*li_pos;
@@ -39,22 +35,16 @@ int	bubble_sort_big(t_list *stack, char *move)
 	li_pos = stack->first;
 	li_next = li_pos->next;
 	if (stack->first == NULL || li_pos->next == NULL)
-		return (0);
+		return ;
 	if (li_next->number > li_pos->number)
-	{
 		swap(stack, move);
-		return (1);
-	}
-	return (0);
 }
 
 void bubble_sort_a(t_list **stack, int size)
 {
 	int i;
-	char *moves;
 
 	i = 0;
-	moves = ft_strdup("");
 	size = (*stack)->size - 1;
 	while (check_order(*stack, size + 1) == 0)
 	{
@@ -62,8 +52,7 @@ void bubble_sort_a(t_list **stack, int size)
 		while (i < size)
 		{
 			bubble_sort(*stack, SA);
-			rotate(*stack, RA, moves);
-			printf("%s\n", "ra");
+			rotate(*stack, RA);
 			i++;
 		}
 		i = 0;

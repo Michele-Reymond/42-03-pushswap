@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:05:43 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/24 21:01:45 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:29:24 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int argc, char **argv)
 		algo_pivot_back(&stack_a, &stack_b);
 	}
 	free_list(stack_a);
-	free_list(stack_b);
+	free(stack_a);
+	free(stack_b);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:10:52 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/24 21:13:43 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:29:07 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,11 @@ void	delete_first(t_list *stack)
 
 void	free_list(t_list *liste)
 {
-	t_nbr	*to_delete;
-
 	if (liste == NULL)
 		exit(0);
-	if (liste->first != NULL)
-	{
-		to_delete = liste->first;
-		liste->first = liste->first->next;
-		free(to_delete);
-	}
+	while (liste->first->next != NULL)
+		delete_last(liste);
+	delete_first(liste);
 }
 
 void	afficherListe(t_list *liste)

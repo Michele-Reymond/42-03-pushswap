@@ -6,75 +6,64 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/17 15:02:01 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/25 00:16:09 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:06:40 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int heart_reverse(t_list ***stack_a, t_list ***stack_b, 
-    t_pivot	*pivot, int size, char *moves)
+int heart_r(t_list ***a, t_list ***b, t_pivot *pivot, int size)
 {
 	int		i;
 	int		pushed_back;
 
 	i = 0;
 	pushed_back = 0;
-	while (i <= size && pivot_is_in_stack(**stack_a, pivot->high))
+	while (i <= size && pivot_is_in_stack(**a, pivot->high))
 	{
-		if (is_smaller((**stack_a)->first->number, pivot->high))
+		if (is_smaller((**a)->first->number, pivot->high))
 		{
-			moves = push(**stack_a, *stack_b, PB, moves);
-			if ((**stack_b) && is_smaller((**stack_b)->first->number, pivot->low))
+			push(**a, *b, PB);
+			if ((**b) && is_smaller((**b)->first->number, pivot->low))
 			{
-				moves = rotate(**stack_b, RB, moves);
+				rotate(**b, RB);
 				pushed_back++;
 			}
 		}
 		else
-			moves = rotate(**stack_a, RA, moves);
+			rotate(**a, RA);
 		i++;
 	}
-	printf("%s", moves);
-    free(moves);
-    moves = NULL;
 	return (pushed_back);
 }
 
-int heart(t_list ***stack_a, t_list ***stack_b, 
-    t_pivot	*pivot, int size, char *moves)
+int heart(t_list ***a, t_list ***b, t_pivot	*pivot, int size)
 {
 	int		i;
 	int		pushed_back;
 
 	i = 0;
 	pushed_back = 0;
-	while (i <= size && pivot_is_in_stack(**stack_a, pivot->high))
+	while (i <= size && pivot_is_in_stack(**a, pivot->high))
 	{
-		if (is_smaller((**stack_a)->first->number, pivot->high))
+		if (is_smaller((**a)->first->number, pivot->high))
 		{
-			moves = push(**stack_a, *stack_b, PB, moves);
-			if ((**stack_b) && is_bigger((**stack_b)->first->number, pivot->low))
+			push(**a, *b, PB);
+			if ((**b) && is_bigger((**b)->first->number, pivot->low))
 			{
-				moves = rotate(**stack_b, RB, moves);
+				rotate(**b, RB);
 				pushed_back++;
 			}
 		}
 		else
-			moves = rotate(*(*stack_a), RA, moves);
+			rotate(**a, RA);
 		i++;
 	}
-	printf("%s", moves);
-    free(moves);
-    moves = NULL;
 	return (pushed_back);
 }
 
 void is_smaller_algo(t_list ***stack_a, t_list ***stack_b)
 {
-    char *moves;
-
-    moves = ft_strdup("");
 	while ((**stack_b)->first->number < (**stack_a)->first->number && 
 		(**stack_b)->first->number < (**stack_a)->last && 
 		(**stack_a)->last != (**stack_a)->biggest) 
@@ -82,22 +71,16 @@ void is_smaller_algo(t_list ***stack_a, t_list ***stack_b)
 		rotate_reverse(**stack_a, RRA);
 		stock_stack_infos(*stack_a);
 	}
-	push(**stack_b, *stack_a, PA, moves);
-	printf("%s\n", "pa");
-	free(moves);
+	push(**stack_b, *stack_a, PA);
 }
 
 void is_bigger_algo(t_list ***stack_a, t_list ***stack_b)
 {
-    char *moves;
-
-    moves = ft_strdup("");
 	if ((**stack_b)->first->number > (**stack_a)->biggest)
 	{
 		while ((**stack_b)->first->number != (**stack_a)->biggest)
 		{
-			rotate(**stack_a, RA, moves);
-			printf("%s\n", "ra");
+			rotate(**stack_a, RA);
 			stock_stack_infos(*stack_a);
 		}
 	}
@@ -106,12 +89,9 @@ void is_bigger_algo(t_list ***stack_a, t_list ***stack_b)
 		while ((**stack_b)->first->number > (**stack_a)->first->number && 
 		(**stack_b)->first->number < (**stack_a)->biggest) 
 		{
-			rotate(**stack_a, RA, moves);
-			printf("%s\n", "ra");
+			rotate(**stack_a, RA);
 			stock_stack_infos(*stack_a);
 		}
 	}
-	push(**stack_b, *stack_a, PA, moves);
-	printf("%s\n", "pa");
-	free(moves);
+	push(**stack_b, *stack_a, PA);
 }

@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:08:35 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/25 00:11:40 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:04:06 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,16 @@ typedef struct s_pivot
 
 t_list	*stock_args(int count, char **arguments, int start);
 t_list	*stock_string(char **av);
-void	bubble_algo_pas_opti(t_list *stack_a, t_list *stack_b);
-char	*algo_bubble_opti_sort(t_list **stack, char *moves);
-int		algo_pass(t_list ***stack, int size);
-int pivot_is_in_stack(t_list *stack_a, int pivot);
+int		pivot_is_in_stack(t_list *stack_a, int pivot);
 int		check_order(t_list *stack, int nbr_to_check);
-int	check_order_reverse(t_list *stack, int nbr_to_check);
-char *algo_bubble_opti_sort_reverse(t_list **stack_a, t_list **stack_b, int size, char *moves);
-void	bubble_algo_reverse_pas_opti(t_list **stack_a);
+int		check_order_reverse(t_list *stack, int nbr_to_check);
 void	delete_last(t_list *stack);
 void	insert_after(t_list *liste, long nbr);
 t_nbr	*find_last(t_list *stack);
-int		bubble_sort(t_list *stack, char *move);
-int		bubble_sort_big(t_list *stack, char *move);
-char	*algo_pivot_sort(t_list **stack_a, t_list **stack_b);
-int		bubble_loop_reverse(t_list *stack);
-int		find_biggest_nbr(t_list *stack_a);
-int		bubble_loop(t_list *stack);
+void	bubble_sort(t_list *stack, char *move);
+void	bubble_sort_big(t_list *stack, char *move);
 void	swap(t_list *stack, char *move);
-char	*push(t_list *src_stack, t_list **dst_stack, char *move, char *moves);
-void	what_to_swap(int *stack_a, int *stack_b, char *move);
+void	push(t_list *src_stack, t_list **dst_stack, char *move);
 long	ft_atol(const char *str);
 void	delete_first(t_list *stack);
 int		check_args(int argc, char *string);
@@ -87,23 +77,20 @@ void	insert_befor(t_list *liste, long nbr);
 int		check_max(long entry);
 void	check_entry(t_list *stack, long entry);
 void	check_nbr(char *nbr, t_list *stack);
-char	*rotate(t_list *stack, char *move, char *moves);
+void	rotate(t_list *stack, char *move);
 void	rotate_reverse(t_list *stack, char *move);
 void    stock_stack_infos(t_list **stack);
 t_pivot *make_pivot(t_list *stack);
 void	algo_pivot_push(t_list **stack_a, t_list **stack_b);
-int is_smaller(int nbr, int pivot);
-void bubble_sort_b(t_list **stack_a, t_list **stack_b, int size);
-void bubble_sort_reverse_b(t_list **stack_a, t_list **stack_b, int size);
-void bubble_sort_a(t_list **stack, int size);
-int is_bigger(int nbr, int pivot);
-char *algo_pivot_big(t_list **stack_a, t_list **stack_b);
+int		is_smaller(int nbr, int pivot);
+void	bubble_sort_a(t_list **stack, int size);
+int		is_bigger(int nbr, int pivot);
 void    algo_pivot_back(t_list **stack_a, t_list **stack_b);
-int heart(t_list ***stack_a, t_list ***stack_b, t_pivot	*pivot, int size, char *moves);
-void is_smaller_algo(t_list ***stack_a, t_list ***stack_b);
+int		heart(t_list ***a, t_list ***b, t_pivot	*pivot, int size);
+int		heart_r(t_list ***a, t_list ***b, t_pivot *pivot, int size);
+void	is_smaller_algo(t_list ***stack_a, t_list ***stack_b);
 void	is_bigger_algo(t_list ***stack_a, t_list ***stack_b);
-void algo_three(t_list **stack);
-void algo_five(t_list **stack_a, t_list **stack_b);
-int heart_reverse(t_list ***stack_a, t_list ***stack_b, t_pivot	*pivot, int size, char *moves);
+void	algo_three(t_list **stack);
+void	algo_five(t_list **stack_a, t_list **stack_b);
 
 #endif
