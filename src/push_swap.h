@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:08:35 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/25 11:02:40 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/25 11:24:29 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int		check_args(int argc, char *string);
 int		check_doubles(t_list *stack, long entry);
 t_list	*list_init(long nbr);
 void	free_list(t_list *liste);
-void	afficherListe(t_list *liste);
 void	insert_befor(t_list *liste, long nbr);
 void	check_max(long entry, t_list *liste);
 void	check_entry(t_list *stack, long entry);

@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:01:09 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/25 09:51:25 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/25 11:17:50 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	rotate_reverse(t_list *stack, char *move)
 		tmp2 = tmp;
 		li_pos = li_pos->next;
 	}
-	printf("%s\n", move);
+	write(1, &move[0], 1);
+	write(1, &move[1], 1);
+	write(1, &move[2], 1);
+	write(1, "\n", 1);
 }
 
 // <<<<<
@@ -51,7 +54,9 @@ void	rotate(t_list *stack, char *move)
 		li_next->number = tmp;
 		li_pos = li_pos->next;
 	}
-	printf("%s\n", move);
+	write(1, &move[0], 1);
+	write(1, &move[1], 1);
+	write(1, "\n", 1);
 }
 
 // char	*rotate(t_list *stack, char *move, char *moves)

@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:01:05 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/24 22:15:09 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/25 11:17:34 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,7 @@ void	swap(t_list *stack, char *move)
 	tmp = li_pos->number;
 	li_pos->number = li_next->number;
 	li_next->number = tmp;
-	printf("%s\n", move);
+	write(1, &move[0], 1);
+	write(1, &move[1], 1);
+	write(1, "\n", 1);
 }

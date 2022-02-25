@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 10:49:12 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/25 11:02:52 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/25 11:21:56 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void check_begin_order(t_list *stack)
 {
 	if (check_order(stack, stack->size))
 	{
-		printf("La liste n'a pas besoin d'être triée\n");
+		write(1, "La liste n'a pas besoin d'être triée\n", 37);
 		free_list(stack);
 	    free(stack);
 		exit(0);
@@ -41,7 +41,7 @@ void	check_max(long entry, t_list *stack)
 {
 	if (!(entry >= INT_MIN && entry <= INT_MAX))
 	{
-		printf("Error\nUn des nombres n'est pas un integre!\n");
+		write(1, "Error\nUn des nombres n'est pas un integre!\n", 43);
 		free_list(stack);
 	    free(stack);
 		exit(0);

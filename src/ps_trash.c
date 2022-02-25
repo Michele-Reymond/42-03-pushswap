@@ -6,13 +6,31 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 20:56:02 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/24 21:41:05 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/25 11:24:17 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 // cimetière des fonctions codée mais inutilisée
+
+void	afficherListe(t_list *liste)
+{
+	t_nbr	*actuel;
+
+	if (liste == NULL)
+	{
+		printf("Liste nulle\n");
+		return ;
+	}
+	actuel = liste->first;
+	while (actuel != NULL)
+	{
+		printf("%d -> ", actuel->number);
+		actuel = actuel->next;
+	}
+	printf("NULL\n");
+}
 
 int	smaller_pivot_low(t_list ****stack_a, t_list ****stack_b, t_pivot *pivot)
 {

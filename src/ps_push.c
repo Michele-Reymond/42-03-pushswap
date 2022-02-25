@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:01:17 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/25 09:46:27 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/25 11:17:43 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ void	push(t_list *src_stack, t_list **dst_stack, char *move)
 		*dst_stack = list_init(nbr);
 	else
 		insert_befor(*dst_stack, nbr);
-	printf("%s\n", move);
+	write(1, &move[0], 1);
+	write(1, &move[1], 1);
+	write(1, "\n", 1);
 }

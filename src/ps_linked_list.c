@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 15:10:52 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/25 10:29:07 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/25 11:24:04 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,22 +94,4 @@ void	free_list(t_list *liste)
 	while (liste->first->next != NULL)
 		delete_last(liste);
 	delete_first(liste);
-}
-
-void	afficherListe(t_list *liste)
-{
-	t_nbr	*actuel;
-
-	if (liste == NULL)
-	{
-		printf("Liste nulle\n");
-		return ;
-	}
-	actuel = liste->first;
-	while (actuel != NULL)
-	{
-		printf("%d -> ", actuel->number);
-		actuel = actuel->next;
-	}
-	printf("NULL\n");
 }
