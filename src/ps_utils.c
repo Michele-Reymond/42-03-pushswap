@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 17:59:38 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/25 10:10:34 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/25 11:04:01 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_list	*stock_args(int count, char **arguments, int start)
 	stack = NULL;
 	check_nbr(arguments[count], stack);
 	entry = ft_atol(arguments[count]);
-	check_max(entry);
+	check_max(entry, stack);
 	stack = list_init(entry);
 	count--;
 	while (count >= j)
@@ -79,6 +79,7 @@ t_list	*stock_args(int count, char **arguments, int start)
 		insert_befor(stack, entry);
 		count--;
 	}
+	check_begin_order(stack);
 	return (stack);
 }
 

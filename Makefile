@@ -6,7 +6,7 @@
 #    By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/11 19:48:18 by mreymond          #+#    #+#              #
-#    Updated: 2022/02/25 10:27:02 by mreymond         ###   ########.fr        #
+#    Updated: 2022/02/25 10:52:49 by mreymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRCS		= src/push_swap.c \
 			src/ps_algo_pivot.c \
 			src/ps_algo_pivot_find.c \
 			src/ps_algo_utils.c \
-			src/ps_algo.c
+			src/ps_algo.c \
+			src/ps_errors_utils.c
 
 OBJS		= $(SRCS:.c=.o)
 

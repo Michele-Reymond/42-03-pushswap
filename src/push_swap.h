@@ -6,7 +6,7 @@
 /*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 17:08:35 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/25 10:04:06 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/25 11:02:40 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_pivot
 
 t_list	*stock_args(int count, char **arguments, int start);
 t_list	*stock_string(char **av);
+void	check_begin_order(t_list *stack);
 int		pivot_is_in_stack(t_list *stack_a, int pivot);
 int		check_order(t_list *stack, int nbr_to_check);
 int		check_order_reverse(t_list *stack, int nbr_to_check);
@@ -74,7 +75,7 @@ t_list	*list_init(long nbr);
 void	free_list(t_list *liste);
 void	afficherListe(t_list *liste);
 void	insert_befor(t_list *liste, long nbr);
-int		check_max(long entry);
+void	check_max(long entry, t_list *liste);
 void	check_entry(t_list *stack, long entry);
 void	check_nbr(char *nbr, t_list *stack);
 void	rotate(t_list *stack, char *move);

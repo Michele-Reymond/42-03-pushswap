@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_errors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mreymond <mreymond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mreymond <mreymond@42lausanne.ch>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:00:42 by mreymond          #+#    #+#             */
-/*   Updated: 2022/02/16 13:34:56 by mreymond         ###   ########.fr       */
+/*   Updated: 2022/02/25 11:03:23 by mreymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,39 +52,21 @@ int	check_args(int argc, char *string)
 	return (0);
 }
 
-int	check_doubles(t_list *stack, long entry)
-{
-	t_nbr	*list_pos;
-
-	list_pos = stack->first;
-	while (list_pos != NULL)
-	{
-		if (list_pos->number == entry)
-			return (0);
-		list_pos = list_pos->next;
-	}
-	return (1);
-}
-
-int	check_max(long entry)
-{
-	if (!(entry >= INT_MIN && entry <= INT_MAX))
-		return (0);
-	return (1);
-}
-
 void	check_entry(t_list *stack, long entry)
 {
-	if (check_max(entry) == 0)
-	{
-		printf("Error\nUn des nombres n'est pas un integre!\n");
-		free(stack);
-		exit(0);
-	}
+	// if (check_max(entry) == 0)
+	// {
+	// 	printf("Error\nUn des nombres n'est pas un integre!\n");
+	// 	free_list(stack);
+	//     free(stack);
+	// 	exit(0);
+	// }
+	check_max(entry, stack);
 	if (check_doubles(stack, entry) == 0)
 	{
 		printf("Error\nIl y a des doublons!\n");
-		free(stack);
+		free_list(stack);
+	    free(stack);
 		exit(0);
 	}
 }
@@ -101,7 +83,8 @@ void	check_nbr(char *nbr, t_list *stack)
 		if (!(nbr[i] >= '0' && nbr[i] <= '9'))
 		{
 			printf("Error\nL'une des entrée n'est pas un nombre\n");
-			free(stack);
+			free_list(stack);
+	    	free(stack);
 			exit(0);
 		}
 		i++;
